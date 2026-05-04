@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mithi Dua – Daily Duas</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&family=Noto+Sans+Bengali:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f7f3ec;--surf:#fffdf8;--surf2:#f0ebe0;
+  --ink:#1c1812;--ink2:#5a5040;--ink3:#9a8d7a;
+  --gold:#b8862a;--gold-l:#f5e6c0;
+  --teal:#1a6b5a;--teal-l:#d4ede7;
+  --border:#e2d8c8;--card:#fffdf8;
+  --flame:#e8500a;--flame2:#f5a623;
+  --sh:rgba(60,40,10,.08);--radius:28px;
+}
+.dk{
+  --bg:#1a1d2e;--surf:#212540;--surf2:#282c4a;
+  --ink:#e8e0d0;--ink2:#c8bfaf;--ink3:#8a8070;
+  --gold:#d4a843;--gold-l:#2a2218;
+  --teal:#3ab99a;--teal-l:#0d1f1c;
+  --border:#2e3250;--card:#212540;
+  --sh:rgba(0,0,0,.3);
+}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);transition:background .4s,color .4s;min-height:100vh;overflow-x:hidden;}
+
+.view{display:none;animation:fu .3s ease both;}
+.view.on{display:flex;flex-direction:column;}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* GEO BG */
+#geo-bg{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.055;}
+.dk #geo-bg{opacity:.03;}
+
+/* ONBOARD */
+#v-ob{min-height:100vh;align-items:center;justify-content:center;padding:24px;position:relative;z-index:1;}
+.ob-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px;max-width:400px;width:100%;text-align:center;box-shadow:0 8px 40px var(--sh);}
+.ob-star{font-size:28px;margin-bottom:14px;}
+.ob-t{font-family:'Lora',serif;font-size:28px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.ob-t b{color:var(--gold);}
+.ob-s{font-size:12px;color:var(--ink3);letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
+.ob-lbl{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;text-align:left;}
+.lang-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;}
+.lopt{padding:14px;border-radius:14px;border:1.5px solid var(--border);background:var(--surf2);cursor:pointer;text-align:center;transition:all .2s;}
+.lopt .ln{font-size:15px;font-weight:600;color:var(--ink);}
+.lopt .ls{font-size:12px;color:var(--ink3);margin-top:2px;}
+.lopt.sel{border-color:var(--gold);background:var(--gold-l);}
+.dk .lopt.sel{background:rgba(212,168,67,.15);}
+.btn-p{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:99px;border:none;background:var(--ink);color:var(--bg);font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:opacity .2s;}
+.btn-p:hover{opacity:.88;}
+.dk .btn-p{background:#e8e0d0;color:#1a1d2e;}
+
+/* HEADER */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 10px;flex-shrink:0;z-index:10;position:relative;}
+.logo{display:flex;align-items:center;gap:8px;}
+.logo-d{width:30px;height:30px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px;box-shadow:0 0 0 4px var(--gold-l);}
+.logo-n{font-size:16px;font-weight:600;color:var(--ink);}
+.chips{display:flex;align-items:center;gap:7px;}
+.chip{display:flex;align-items:center;gap:4px;padding:5px 11px;border-radius:99px;font-size:11px;font-weight:600;border:1px solid var(--border);background:var(--surf);color:var(--ink2);white-space:nowrap;}
+.chip.fi{border-color:var(--flame2);background:rgba(245,166,35,.12);color:var(--flame);}
+.dk .chip.fi{color:#f5a623;}
+.chip.xp{border-color:var(--gold);background:var(--gold-l);color:var(--gold);}
+.dk .chip.xp{background:rgba(212,168,67,.14);}
+.ibtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surf);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s;color:var(--ink2);}
+.ibtn:hover{background:var(--surf2);}
+@keyframes fl{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.1) scaleX(.93)}}
+.fa{display:inline-block;animation:fl 1.3s ease-in-out infinite;}
+
+/* DASHBOARD */
+#v-dash{min-height:100vh;padding-bottom:28px;position:relative;z-index:1;}
+.dhero{margin:0 14px 14px;background:var(--surf);border:1px solid var(--border);border-radius:var(--radius);padding:36px 24px;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 20px var(--sh);}
+.dhero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -20%,var(--gold-l) 0%,transparent 65%);opacity:.65;pointer-events:none;}
+.dk .dhero::before{opacity:.15;}
+.orn{font-size:11px;letter-spacing:9px;color:var(--gold);opacity:.7;margin-bottom:14px;position:relative;z-index:1;}
+.ht{font-family:'Lora',serif;font-size:clamp(34px,7vw,56px);font-weight:600;color:var(--ink);line-height:1.1;position:relative;z-index:1;}
+.ht b{color:var(--gold);}
+.hq{font-family:'Lora',serif;font-style:italic;font-size:12px;color:var(--ink2);max-width:340px;margin:8px auto 24px;line-height:1.7;position:relative;z-index:1;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:0 14px 11px;}
+@media(max-width:440px){.g3{grid-template-columns:1fr 1fr;}}
+.sc{background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:16px 14px;box-shadow:0 2px 10px var(--sh);}
+.sl2{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--ink3);margin-bottom:4px;}
+.sv{font-size:24px;font-weight:600;color:var(--ink);}
+.ss{font-size:11px;color:var(--ink3);margin-top:2px;}
+.aw{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.lvb{height:3px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:4px;}
+.lvf{height:100%;background:var(--gold);border-radius:99px;transition:width .8s ease;}
+.qc{margin:0 14px;background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 2px 10px var(--sh);}
+.ql{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--ink3);margin-bottom:12px;}
+.qi{display:flex;align-items:center;gap:9px;margin-bottom:9px;font-size:13px;color:var(--ink2);}
+.qk{width:17px;height:17px;min-width:17px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .3s;}
+.qk.dn{background:var(--teal);border-color:var(--teal);color:#fff;}
+.qt.dn{text-decoration:line-through;opacity:.4;}
+
+/* READING */
+#v-read{min-height:100vh;position:relative;z-index:1;overflow:hidden;}
+.rbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 14px 14px;min-height:calc(100vh - 76px);}
+.cstage{width:100%;max-width:540px;position:relative;user-select:none;}
+.scard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);min-height:440px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 36px var(--sh);position:relative;overflow:hidden;cursor:grab;touch-action:pan-y;}
+.scard:active{cursor:grabbing;}
+.scard::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%,var(--gold-l) 0%,transparent 60%);opacity:.4;pointer-events:none;}
+.dk .scard::before{opacity:.08;}
+.cg1{position:absolute;inset:0;border-radius:var(--radius);background:var(--surf2);border:1px solid var(--border);transform:scale(.93) translateY(13px);z-index:-1;}
+.cg2{position:absolute;inset:0;border-radius:var(--radius);background:var(--border);border:1px solid var(--border);transform:scale(.87) translateY(24px);z-index:-2;}
+.cflip{width:100%;perspective:1200px;}
+.cfi{transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1);position:relative;min-height:320px;}
+.cfi.flipped{transform:rotateY(180deg);}
+.cf{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:4px;}
+.cfb{transform:rotateY(180deg);}
+
+.arabic{font-family:'Amiri',serif;font-size:clamp(20px,3.8vw,36px);line-height:2;color:var(--ink);text-align:center;direction:rtl;position:relative;z-index:1;}
+.eotext{font-family:'Lora',serif;font-size:clamp(13px,2.1vw,16px);color:var(--ink);text-align:center;line-height:1.85;font-style:italic;position:relative;z-index:1;max-width:420px;}
+.taphint{font-size:11px;color:var(--ink3);letter-spacing:1.4px;text-transform:uppercase;display:flex;align-items:center;gap:7px;width:100%;}
+.taphint::before,.taphint::after{content:'';flex:1;height:1px;background:var(--border);}
+.srcb{font-size:11px;color:var(--ink3);border:1px solid var(--border);padding:3px 11px;border-radius:99px;}
+.trlit{font-size:12px;color:var(--teal);text-align:center;line-height:1.75;font-style:italic;font-family:'Noto Sans Bengali','Lora','DM Sans',sans-serif;}
+.div1{width:30px;height:1px;background:var(--border);}
+.entr{font-family:'Lora',serif;font-size:clamp(13px,2vw,15px);color:var(--ink);text-align:center;line-height:1.85;font-style:italic;}
+.bntr{font-family:'Noto Sans Bengali','DM Sans',sans-serif;font-size:clamp(12px,1.8vw,14px);color:var(--ink2);text-align:center;line-height:1.9;}
+
+.swp,.swn{position:absolute;top:50%;transform:translateY(-50%);font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:6px 11px;border-radius:99px;opacity:0;transition:opacity .15s;pointer-events:none;}
+.swp{left:-62px;background:rgba(232,80,10,.1);color:var(--flame);border:1px solid var(--flame2);}
+.swn{right:-62px;background:var(--teal-l);color:var(--teal);border:1px solid var(--teal);}
+.dk .swn{background:rgba(58,185,154,.1);border-color:#3ab99a;color:#3ab99a;}
+
+.rctr{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;}
+.dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:320px;margin:14px auto 0;}
+.dot{width:5px;height:5px;border-radius:99px;background:var(--border);transition:all .35s;}
+.dot.dn{background:var(--teal);opacity:.5;}
+.dot.cur{background:var(--gold);width:15px;}
+
+.twrap{display:flex;flex-direction:column;align-items:center;gap:7px;margin-top:12px;}
+.tbtn{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 4px 18px rgba(26,107,90,.3);}
+.tbtn:hover:not(:disabled){transform:scale(1.08);}
+.tbtn:active:not(:disabled){transform:scale(.95);}
+.tbtn:disabled{background:var(--border);box-shadow:none;cursor:not-allowed;}
+.dk .tbtn:disabled{background:#2e3250;}
+.thint{font-size:11px;color:var(--ink3);}
+.tsvg{width:24px;height:24px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.tsvg.lk{stroke:var(--ink3);}
+.dk .tsvg.lk{stroke:#6a6258;}
+.sarr{display:flex;align-items:center;gap:9px;font-size:11px;color:var(--ink3);margin-top:5px;}
+
+/* FINISHED */
+#v-fin{min-height:100vh;align-items:center;justify-content:center;padding:28px 18px;text-align:center;gap:22px;position:relative;z-index:1;}
+.medal{width:86px;height:86px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 0 0 12px var(--gold-l),0 6px 28px rgba(184,134,42,.28);animation:pop .6s cubic-bezier(.34,1.56,.64,1) both;}
+@keyframes pop{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
+.ftitle{font-family:'Lora',serif;font-size:clamp(28px,6vw,44px);font-weight:600;color:var(--ink);}
+.fsub{font-size:11px;color:var(--ink3);letter-spacing:1.4px;text-transform:uppercase;}
+.fxp{font-size:26px;font-weight:600;color:var(--gold);}
+.fstats{display:flex;gap:18px;justify-content:center;}
+.fst{text-align:center;}
+.fstv{font-size:24px;font-weight:600;color:var(--ink);}
+.fstl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--ink3);}
+.btn-s{padding:11px 26px;border-radius:99px;border:1px solid var(--border);background:var(--surf);color:var(--ink2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;}
+.btn-s:hover{background:var(--surf2);}
+
+.conf{position:fixed;pointer-events:none;z-index:999;width:8px;height:8px;border-radius:2px;animation:fall linear forwards;}
+@keyframes fall{0%{transform:translateY(-10px) rotate(0);opacity:1}100%{transform:translateY(105vh) rotate(600deg);opacity:0}}
+
+/* SETTINGS */
+.sov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:100;align-items:flex-end;justify-content:center;}
+.sov.on{display:flex;animation:fu .25s ease both;}
+.sp{background:var(--surf);border-radius:22px 22px 0 0;padding:26px 22px 38px;width:100%;max-width:480px;border-top:1px solid var(--border);}
+.spt{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:18px;}
+.spr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;font-size:14px;color:var(--ink2);}
+.spc{float:right;background:none;border:none;font-size:19px;cursor:pointer;color:var(--ink3);}
+.tgg{display:flex;border:1px solid var(--border);border-radius:99px;overflow:hidden;background:var(--surf2);}
+.tgo{padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;color:var(--ink3);}
+.tgo.act{background:var(--ink);color:var(--bg);}
+.dk .tgo.act{background:var(--gold);color:#1a1d2e;}
+</style>
+</head>
+<body>
+
+<svg id="geo-bg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs><pattern id="p" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+    <polygon points="50,2 62,20 82,20 67,34 73,53 50,42 27,53 33,34 18,20 38,20" fill="none" stroke="#b8862a" stroke-width=".7"/>
+    <circle cx="50" cy="50" r="2.5" fill="none" stroke="#b8862a" stroke-width=".5"/>
+    <line x1="0" y1="50" x2="100" y2="50" stroke="#b8862a" stroke-width=".25"/>
+    <line x1="50" y1="0" x2="50" y2="100" stroke="#b8862a" stroke-width=".25"/>
+  </pattern></defs>
+  <rect width="100%" height="100%" fill="url(#p)"/>
+</svg>
+
+<!-- ONBOARD -->
+<div id="v-ob" class="view on">
+  <div class="ob-card">
+    <div class="ob-star">✦</div>
+    <div class="ob-t">Mithi <b>Dua</b></div>
+    <div class="ob-s">Daily Duas</div>
+    <div class="ob-lbl">Choose your language</div>
+    <div class="lang-row">
+      <div class="lopt sel" onclick="selLang('en',this)"><div class="ln">English</div><div class="ls">English</div></div>
+      <div class="lopt" onclick="selLang('bn',this)"><div class="ln">বাংলা</div><div class="ls">Bengali</div></div>
+    </div>
+    <button class="btn-p" onclick="finishOnboard()"><span id="ob-btn">Begin Your Path</span> →</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="v-dash" class="view">
+  <header class="hdr">
+    <div class="logo"><div class="logo-d">✦</div><div class="logo-n">Mithi Dua</div></div>
+    <div class="chips">
+      <div class="chip fi"><span class="fa">🔥</span> <span id="h-str">0</span></div>
+      <div class="chip xp">✦ <span id="h-xp">0</span> XP</div>
+      <div class="ibtn" id="db1">🌙</div>
+      <div class="ibtn" onclick="openSett()">⚙</div>
+    </div>
+  </header>
+  <div class="dhero">
+    <div class="orn">✦ &nbsp;✦ &nbsp;✦</div>
+    <div class="ht">Mithi <b>Dua</b></div>
+    <div class="hq" id="dq"></div>
+    <button class="btn-p" style="max-width:250px;margin:0 auto;" onclick="startRead()"><span id="sl">Begin Today's Path</span> →</button>
+  </div>
+  <div class="g3">
+    <div class="sc"><div class="sl2">🔥 Streak</div><div class="sv" id="ds">0</div><div class="ss" id="dss">days in a row</div></div>
+    <div class="sc"><div class="sl2">✦ Total XP</div><div class="sv" id="dx">0</div><div class="ss">Level <span id="dlv">1</span></div><div class="lvb"><div class="lvf" id="dbar" style="width:0%"></div></div></div>
+    <div class="sc aw">
+      <div class="sl2" id="dpl">Today</div>
+      <svg width="78" height="78" viewBox="0 0 78 78">
+        <circle cx="39" cy="39" r="29" fill="none" stroke-width="5" style="stroke:var(--border)"/>
+        <circle cx="39" cy="39" r="29" fill="none" stroke-width="5" id="arc" style="stroke:var(--gold);stroke-linecap:round;stroke-dasharray:182;stroke-dashoffset:182;transform:rotate(-90deg);transform-origin:39px 39px;transition:stroke-dashoffset .8s ease;"/>
+        <text x="39" y="43" text-anchor="middle" font-size="11" font-weight="600" style="fill:var(--ink);font-family:'DM Sans',sans-serif;" id="arct">0/29</text>
+      </svg>
+    </div>
+  </div>
+  <div class="qc">
+    <div class="ql" id="qtl"></div>
+    <div class="qi"><div class="qk" id="q1k"></div><span class="qt" id="q1t"></span></div>
+    <div class="qi"><div class="qk" id="q2k"></div><span class="qt" id="q2t"></span></div>
+    <div class="qi"><div class="qk" id="q3k"></div><span class="qt" id="q3t"></span></div>
+  </div>
+</div>
+
+<!-- READING -->
+<div id="v-read" class="view">
+  <header class="hdr">
+    <div class="ibtn" onclick="goHome()">←</div>
+    <div class="rctr">Dua <span id="cn">1</span> / 29</div>
+    <div class="ibtn" id="db2">🌙</div>
+  </header>
+  <div class="rbody">
+    <div class="cstage">
+      <div class="cg2"></div><div class="cg1"></div>
+      <div class="scard" id="sc">
+        <span class="swp" id="swp">← Prev</span>
+        <span class="swn" id="swn">Next →</span>
+        <div class="cflip">
+          <div class="cfi" id="cfi">
+            <div class="cf">
+              <div class="arabic" id="car"></div>
+              <div class="eotext" id="ceo"></div>
+              <div class="srcb" id="csc"></div>
+              <div class="taphint" id="cth"></div>
+            </div>
+            <div class="cf cfb">
+              <div class="trlit" id="ctr"></div>
+              <div class="div1" id="cd1"></div>
+              <div class="entr" id="cen"></div>
+              <div class="bntr" id="cbn"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dots" id="dots"></div>
+    <div class="twrap">
+      <button class="tbtn" id="tb" disabled onclick="markRead()">
+        <svg class="tsvg lk" id="ti" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div class="thint" id="th"></div>
+    </div>
+    <div class="sarr"><span>←</span><span>swipe to navigate · tap card to reveal</span><span>→</span></div>
+  </div>
+</div>
+
+<!-- FINISHED -->
+<div id="v-fin" class="view">
+  <div class="medal">☀</div>
+  <div><div class="ftitle" id="ft"></div><div class="fsub" id="fs"></div></div>
+  <div class="fxp">+ 50 XP earned</div>
+  <div class="fstats">
+    <div class="fst"><div class="fstv" id="fss">0</div><div class="fstl">🔥 Streak</div></div>
+    <div class="fst"><div class="fstv" id="fxp">0</div><div class="fstl">✦ Total XP</div></div>
+    <div class="fst"><div class="fstv">29</div><div class="fstl">Duas</div></div>
+  </div>
+  <button class="btn-p" style="max-width:260px;" onclick="goHome()"><span id="fhl"></span></button>
+  <button class="btn-s" onclick="startRead()">↺ <span id="fal"></span></button>
+</div>
+
+<!-- SETTINGS -->
+<div class="sov" id="sov">
+  <div class="sp">
+    <button class="spc" onclick="closeSett()">✕</button>
+    <div class="spt" id="stt">Settings</div>
+    <div class="spr"><span id="slt">Language</span>
+      <div class="tgg"><div class="tgo" id="ten" onclick="setLang('en')">English</div><div class="tgo" id="tbn" onclick="setLang('bn')">বাংলা</div></div>
+    </div>
+    <div class="spr"><span id="sth">Theme</span>
+      <div class="tgg"><div class="tgo" id="tli" onclick="setTheme('light')">Light</div><div class="tgo" id="tda" onclick="setTheme('dark')">Dark</div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const D=[
+  {a:"أَشْهَدُ أَنْ لَّا إِلٰهَ إِلَّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ",t:"Ash-hadu an laa ilaaha illallahu wahdahu laa shareeka lahu wa ash-hadu anna Muhammadan 'abduhu wa rasuluhu.",bt:"আশহাদু আন লা ইলাহা ইল্লাল্লাহু ওয়াহদাহু লা শারিকা লাহু ওয়া আশহাদু আন্না মুহাম্মাদান 'আবদুহু ওয়া রাসুলুহু।",e:"I bear witness that none is worthy of worship except Allah, alone without partner, and I bear witness that Muhammad ﷺ is His servant and Messenger.",b:"আমি সাক্ষ্য দিচ্ছি যে আল্লাহ ছাড়া কোনো মাবুদ নেই, তিনি এক, তাঁর কোনো শরিক নেই এবং মুহাম্মদ ﷺ তাঁর বান্দা ও রাসূল।",s:"Sahih Muslim, 234"},
+  {a:"اللَّهُمَّ حَاسِبْنِي حِسَابًا يَسِيرًا",t:"Allahumma haasibnee hisaaban yaseeraa.",bt:"আল্লাহুম্মা হাসিবনি হিসাবাই ইয়াসিরা।",e:"O Allah, make my accounting easy.",b:"হে আল্লাহ, আমার হিসাব সহজ করে নিও।",s:"Musnad Ahmad, 24215"},
+  {a:"اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي",t:"Allahumma innaka afuwwun tuhibbul-'afwa fa'fu 'anni.",bt:"আল্লাহুম্মা ইন্নাকা আফুউন তুহিব্বুল আফওয়া ফা'ফু 'আন্নি।",e:"O Allah, You are The Most Forgiving and You love forgiveness, so forgive me.",b:"হে আল্লাহ, নিশ্চয়ই আপনি ক্ষমাশীল, ক্ষমা করতে ভালোবাসেন, তাই আমাকে ক্ষমা করুন।",s:"Jami' at-Tirmidhi, 3513"},
+  {a:"اللَّهُمَّ هَبْ لِي حَمْدًا وَهَبْ لِي مَجْدًا لَا مَجْدَ إِلَّا بِفِعَالٍ وَلَا فِعَالَ إِلَّا بِمَالٍ اللَّهُمَّ لَا يُصْلِحُنِي الْقَلِيلُ وَلَا أَصْلُحُ عَلَيْهِ",t:"Allahumma hab lii hamdan, wa hab lii majdan, la majda illaa bi-fi'al, walaa fi'ala illa bi-malin, allahumma laa yuslihunil-qalilu walaa asluhu 'alayhi.",bt:"আল্লাহুম্মা হাব লি হামদান, ওয়া হাব লি মাজদান, লা মাজদা ইল্লা বিফি'আল, ওয়ালা ফি'আলা ইল্লা বিমালিন, আল্লাহুম্মা লা ইউসলিহুনিল ক্বালিলু ওয়ালা আসলুহু 'আলাইহি।",e:"O Allah, grant me praise and honor. There is no honor except through actions, and no actions except with wealth. O Allah, little is not enough for me, nor am I fit for little.",b:"হে আল্লাহ, আমাকে প্রশংসা ও সম্মান দান করুন। কর্ম ব্যতীত কোনো সম্মান নেই এবং সম্পদ ব্যতীত কোনো কর্ম নেই। হে আল্লাহ, অল্প আমার জন্য যথেষ্ট নয়।",s:"Al-Adab Al-Mufrad, 681"},
+  {a:"رَبِّ اغْفِرْ لِي وَهَبْ لِي مُلْكًا لَّا يَنبَغِي لِأَحَدٍ مِّن بَعْدِي إِنَّكَ أَنتَ الْوَهَّابُ",t:"Rabbi ighfir li wahab li mulkan la yanbaghi li-ahadin min ba'di, innaka anta l-wahhab.",bt:"রাব্বিগফির লি ওয়াহাব লি মুলকান লা ইয়ানবাগি লি আহাদিম মিন বা'দি, ইন্নাকা আনতাল ওয়াহহাব।",e:"My Lord! Forgive me and grant me an authority none after me shall have. You are the Giver of all bounties.",b:"হে আমার প্রতিপালক! আমাকে ক্ষমা করুন ও এমন রাজত্ব দান করুন যা আমার পরে কারো জন্য উপযুক্ত নয়।",s:"Surah Sad 38:35"},
+  {a:"اللَّهُمَّ رَبَّ النَّاسِ أَذْهِبِ الْبَأْسَ وَاشْفِ أَنْتَ الشَّافِي لَا شِفَاءَ إِلَّا شِفَاؤُكَ شِفَاءً لَا يُغَادِرُ سَقَمًا",t:"Allaahumma Rabban-naas, adhhibil-ba's, washfi antash-Shaafi laa shifaa'a illaa shifaa'uka shifaa'an laa yughaadiru saqaman.",bt:"আল্লাহুম্মা রাব্বান নাস, আযহিবিল বা'স, ওয়াশফি আনতাশ শাফি লা শিফাআ ইল্লা শিফাউকা শিফাআন লা ইউগাদিরু সাক্বামা।",e:"O Allah, Lord of mankind, remove the harm and heal. You are the Healer — there is no healing except Yours, a healing that leaves no sickness behind.",b:"হে আল্লাহ, মানবজাতির পালনকর্তা, কষ্ট দূর করুন ও আরোগ্য দিন। আপনিই একমাত্র আরোগ্যকারী।",s:"Sahih Bukhari, 5675"},
+  {a:"أَنِّي مَسَّنِيَ الضُّرُّ وَأَنْتَ أَرْحَمُ الرَّاحِمِينَ",t:"Anni massaniyaddurru wa anta arhamur rahimin.",bt:"আন্নী মাসসানিয়াদ্দুররু ওয়া আনতা আরহামুর রাহিমীন।",e:"I have been afflicted with distress and You are the Most Merciful of the merciful.",b:"আমি দুঃখকষ্টে পড়েছি এবং আপনি দয়াবানদের চেয়ে শ্রেষ্ঠ দয়ালু।",s:"Surah Al-Anbiya 21:83"},
+  {a:"اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَاهْدِنِي وَعَافِنِي وَارْزُقْنِي",t:"Allahummaghfirli, warhamni, wahdini, wa 'aafini, warzuqni.",bt:"আল্লাহুম্মাগফিরলি, ওয়ারহামনি, ওয়াহদিনি, ওয়া আফিনি, ওয়ারযুকনি।",e:"O Allah, forgive me, have mercy on me, guide me, grant me well-being, and provide for me.",b:"হে আল্লাহ, আমাকে মাফ করুন, রহম করুন, হেদায়েত দিন, শান্তি দিন ও রিজিক দান করুন।",s:"Sunan Abi Dawud, 850"},
+  {a:"رَبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",t:"Rabbi irhamhuma kama rabbayani saghira.",bt:"রাব্বির হামহুমা কামা রাব্বায়ানি সাগিরা।",e:"My Lord, have mercy upon them as they brought me up when I was small.",b:"হে আমার প্রতিপালক, তাদের উভয়কে রহম করুন, যেমন তারা আমাকে শৈশবে লালন-পালন করেছিলেন।",s:"Surah Al-Isra 17:24"},
+  {a:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَافِيَةَ",t:"Allahumma inni as'aluka al-afiyah.",bt:"আল্লাহুম্মা ইন্নি আসআলুকাল 'আফিয়াহ।",e:"O Allah, I ask You for wellbeing — protection from all pain and suffering.",b:"হে আল্লাহ, আমি আপনার কাছে সুস্থতা ও নিরাপত্তা প্রার্থনা করছি।",s:"Jami' at-Tirmidhi, 3514"},
+  {a:"اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",t:"Allahumma a'innee 'alaa dhikrika, wa shukrika, wa husni 'ibaadatika.",bt:"আল্লাহুম্মা আ'ইন্নি 'আলা যিকরিকা, ওয়া শুকরিকা, ওয়া হুসনি 'ইবাদাতিকা।",e:"O Allah, help me to remember You, to be grateful to You, and to worship You in the best manner.",b:"হে আল্লাহ! আপনার যিকর করতে, শুকরিয়া আদায় করতে ও উত্তমরূপে ইবাদত করতে সাহায্য করুন।",s:"Sunan Abi Dawud, 1522"},
+  {a:"رَضِيتُ بِاللَّهِ رَبًّا وَبِالْإِسْلَامِ دِينًا وَبِمُحَمَّدٍ نَبِيًّا",t:"Raditu billahi Rabban, wa bil-Islami dinan, wa bi-Muhammadin nabiyyan.",bt:"রাদিতু বিল্লাহি রাব্বা, ওয়া বিল ইসলামি দিনা, ওয়া বিমুহাম্মাদিন (সাল্লাল্লাহু আলাইহি ওয়া সাল্লাম) নাবিয়্যা।",e:"I am pleased with Allah as my Lord, Islam as my religion, and Muhammad ﷺ as my Prophet.",b:"আমি আল্লাহর প্রতি সন্তুষ্ট প্রতিপালক হিসেবে, ইসলামের প্রতি দ্বীন হিসেবে ও মুহাম্মদ ﷺ-এর প্রতি নবী হিসেবে।",s:"Sunan Abi Dawud, 5072"},
+  {a:"رَبِّ اغْفِرْ وَارْحَمْ وَأَنتَ خَيْرُ الرَّاحِمِينَ",t:"Rabbighfir warham wa anta khayrur rahimin.",bt:"রাব্বিগফির ওয়ারহাম ওয়া আনতা খাইয়রুর রাহিমিন।",e:"My Lord, forgive and have mercy, for You are the best of those who show mercy.",b:"হে আমার প্রতিপালক, ক্ষমা করুন ও রহম করুন, আর আপনিই শ্রেষ্ঠ দয়ালু।",s:"Surah Al-Mu'minun 23:118"},
+  {a:"يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ",t:"Ya Muqallibal-qulubi, thabbit qalbi 'ala dinik.",bt:"ইয়া মুক্বাল্লিবাল কুলুবি সাব্বিত কালবি আলা দ্বিনিকা।",e:"O Changer of the hearts, make my heart firm upon Your religion.",b:"হে মনের গতি পরিবর্তনকারী, আমার মনকে আপনার দ্বীনের ওপর স্থির করুন।",s:"Jami' at-Tirmidhi, 3522"},
+  {a:"رَبِّ إِنِّي مَغْلُوبٌ فَانتَصِرْ",t:"Rabbi anni maghloobun fantasir.",bt:"রাব্বি আন্নি মাগলুবুন ফানতাসির।",e:"My Lord! I am overpowered, so come to my aid.",b:"হে আমার প্রভু! আমি তো অসহায়, অতএব তুমি আমাকে সাহায্য কর।",s:"Surah Al-Qamar 54:10"},
+  {a:"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",t:"Rabbanaa atinaa fid dunyaa hasanata wafil aakhirati hasanata waqinaa 'adhaaban-naar.",bt:"রাব্বানা আতিনা ফিদ দুনইয়া হাসানাতাও ওয়াফিল আখিরাতি হাসানাতাও ওয়াক্বিনা 'আযাবান নার।",e:"Our Lord! Grant us good in this world and good in the Hereafter, and save us from the torment of the Fire.",b:"হে আমাদের প্রতিপালক, দুনিয়া ও পরকালে কল্যাণ দিন এবং জাহান্নামের আযাব থেকে রক্ষা করুন।",s:"Surah Al-Baqarah 2:201"},
+  {a:"رَبِّ إِنِّي أَعُوذُ بِكَ أَنْ أَسْأَلَكَ مَا لَيْسَ لِي بِهِ عِلْمٌ وَإِلَّا تَغْفِرْ لِي وَتَرْحَمْنِي أَكُن مِّنَ الْخَاسِرِينَ",t:"Rabbi innee a'udhu bika an as'alaka maa laysa lee bihi 'ilm, wa illaa taghfir lee wa tarhamnee akun minal-khaasirin.",bt:"রাব্বি ইন্নি আ'উযু বিকা আন আসআলাকা মা লাইসা লি বিহি 'ইলম, ওয়া ইল্লা তাগফির লি ওয়াতারহামনি আকুন মিনাল খাসিরিন।",e:"My Lord, I seek refuge in You from asking what I have no knowledge of. Unless You forgive and have mercy, I will be among the losers.",b:"হে আমার পালনকর্তা, আমার যা জানা নেই এমন কিছু চাওয়া থেকে আশ্রয় চাই। ক্ষমা ও দয়া না করলে আমি ক্ষতিগ্রস্ত হব।",s:"Quran 11:47"},
+  {a:"اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا طَيِّبًا وَعَمَلًا مُتَقَبَّلًا",t:"Allahumma inni as'aluka 'ilman nafi'an, wa rizqan tayyiban, wa 'amalan mutaqabbalan.",bt:"আল্লাহুম্মা ইন্নি আসআলুকা 'ইলমান নাফি'আন, ওয়া রিযক্বান তাইয়িবান, ওয়া 'আমালান মুতাক্বাব্বালা।",e:"O Allah, I ask You for beneficial knowledge, goodly provision and acceptable deeds.",b:"হে আল্লাহ! আমি তোমার কাছে উপকারী জ্ঞান, হালাল রিজিক এবং কবুলযোগ্য আমল প্রার্থনা করছি।",s:"Sunan Ibn Majah, 925"},
+  {a:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ وَالْعَجْزِ وَالْكَسَلِ وَالْبُخْلِ وَالْجُبْنِ وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ",t:"Allaahumma innee a'oozu bika minal-hammi walhazani, wal'ajzi walkasali, walbukhli waljubni, wa dala'id-dayni wa ghalabatir-rijaal.",bt:"আল্লাহুম্মা ইন্নি আ'উযু বিকা মিনাল হাম্মি ওয়াল হাযানি, ওয়াল 'আজযি ওয়াল কাসালি, ওয়াল বুখলি ওয়াল জুবনি, ওয়া দালা'ইদ দাইনি ওয়া গালাবাতির রিজাল।",e:"O Allah, I seek refuge in You from grief, sadness, weakness, laziness, miserliness, cowardice, debt burden, and being overpowered by others.",b:"হে আল্লাহ, চিন্তা, পেরেশানি, অক্ষমতা, অলসতা, কৃপণতা, কাপুরুষতা, ঋণভার ও মানুষের প্রভাব থেকে আশ্রয় চাই।",s:"Sahih Bukhari, 6363"},
+  {a:"رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ",t:"Rabbanaa zalamnaa anfusanaa wa-illam taghfir lanaa watarhamnaa lanakuunanna minal-khaasirin.",bt:"রাব্বানা যালামনা আনফুসানা ওয়া ইল্লাম তাগফির লানা ওয়াতারহামনা লানাকুনান্না মিনাল খাসিরিন।",e:"Our Lord, we have wronged ourselves, and if You do not forgive us and have mercy, we will surely be among the losers.",b:"হে আল্লাহ, আমরা নিজেদের উপর জুলুম করেছি। ক্ষমা ও রহম না করলে আমরা ক্ষতিগ্রস্তদের দলভুক্ত হব।",s:"Surah Al-A'raf 7:23"},
+  {a:"اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ وَمِنْ عَذَابِ جَهَنَّمَ وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ",t:"Allahumma inni a'udhu bika min 'adhabil qabr, wa min 'adhabi jahannam, wa min fitnatil mahyaa wal mamaat, wa min sharri fitnatil masihid dajjal.",bt:"আল্লা-হুম্মা ইন্নী আ'ঊযু বিকা মিন 'আযা-বিল ক্বাবর, ওয়া মিন 'আযা-বি জাহান্নাম, ওয়া মিন ফিতনাতিল মাহ্ইয়া ওয়াল মামা-ত, ওয়া মিন শাররি ফিতনাতিল মাসীহিদ দাজ্জা-ল।",e:"O Allah, I seek refuge in You from the torment of the grave, from the torment of Hell, from the trials of life and death, and from the evil of the tribulation of Al-Masih Ad-Dajjal.",b:"হে আল্লাহ! আমি কবরের আযাব, জাহান্নামের আযাব, জীবন-মৃত্যুর ফিতনা এবং দাজ্জালের ফিতনার অনিষ্টতা থেকে আশ্রয় চাই।",s:"Sahih Muslim, 588"},
+  {a:"اللَّهُمَّ اغْفِرْ لِي وَارْحَمْنِي وَأَلْحِقْنِي بِالرَّفِيقِ الْأَعْلَى",t:"Allahummaghfirli warhamni wa alhiqni bir-Rafiqil A'la.",bt:"আল্লাহুম্মাগফিরলি ওয়ারহামনি ওয়া আলহিক্বনি বির রফি-ক্বিল আ'লা।",e:"O Allah, forgive me, have mercy on me, and join me with the Highest Companions.",b:"হে আল্লাহ্! আমাকে মাফ করুন, দয়া করুন এবং সুমহান সঙ্গির সাথে মিলিত করুন।",s:"Sahih Bukhari, 4440"},
+  {a:"اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ",t:"Allahumma inni as'alukal-'afwa wal-'afiyah fid-dunya wal-akhirah.",bt:"আল্লাহুম্মা ইন্নি আসআলুকাল 'আফওয়া ওয়াল 'আফিয়াহ ফিদ দুনইয়া ওয়াল আখিরাহ।",e:"O Allah, I ask You for forgiveness and well-being in this world and in the Hereafter.",b:"হে আল্লাহ, আমি আপনার কাছে দুনিয়া ও আখিরাতে ক্ষমা এবং সুস্থতা ও নিরাপত্তা প্রার্থনা করছি।",s:"Sunan Ibn Majah, 3851"},
+  {e:"Ya Allah, help me to love Your Messenger (peace and blessings be upon him) and make him (pbuh) dearer to me than everything else.",b:"হে আল্লাহ, আমাকে আপনার রাসূল ﷺ-কে ভালোবাসতে সাহায্য করুন এবং তাঁকে আমার কাছে সবকিছুর চেয়ে প্রিয় করে দিন।"},
+  {e:"Oh Allah, I can't. But You can. I'm weak. But You are strong. Take me in, not because of me but because of You. Your mercy is stronger than my weakness. Your perfection is greater than my humanness. I beseech You to replace what's lost, mend what's broken, and allow my hope in You to kill my despair.",b:"হে আল্লাহ, আমি পারছি না, কিন্তু আপনি পারেন। আমি দুর্বল, কিন্তু আপনি শক্তিশালী। আমাকে গ্রহণ করুন আপনার অনুগ্রহের কারণে। যা হারিয়ে গেছে তা পূরণ করুন, যা ভেঙে গেছে তা জোড়া দিন এবং আমার হতাশার উপর আশাকে বিজয়ী করুন।"},
+  {e:"O Allah, O As-Salaam (The Perfection and Giver of Peace), O Ar-Razzaaq (The Provider), heal our sicknesses, cover our shortcomings, forgive our sins and fulfill our dreams.",b:"হে আল্লাহ, হে আস-সালাম, হে আর-রাযযাক্ব, আমাদের অসুস্থতা সারিয়ে দিন, আমাদের ত্রুটি ঢেকে দিন, গুনাহ মাফ করুন এবং স্বপ্ন পূরণ করুন।"},
+  {e:"Ya Al-Wahhaab (The Giver of Gifts), make it easy for us, purify our minds, put joy in our hearts, increase our imaan, and elevate us beyond our expectations.",b:"হে আল-ওয়াহহাব, আমাদের জন্য সহজ করুন, মন পরিশুদ্ধ করুন, হৃদয়ে আনন্দ দিন, ঈমান বৃদ্ধি করুন এবং আমাদের প্রত্যাশার বাইরে উন্নত করুন।"},
+  {e:"Ya Allah, grant my family, friends and me good health, a long life and keep us all safe!",b:"হে আল্লাহ, আমাকে, আমার পরিবার ও বন্ধুদের সুস্বাস্থ্য দান করুন, দীর্ঘ জীবন দান করুন এবং সকলকে নিরাপদ রাখুন।"},
+  {e:"O Allah, truly You are The Praiseworthy, The Glorious, let Your Blessings come upon Muhammad ﷺ and the family of Muhammad ﷺ.",b:"হে আল্লাহ, নিশ্চয়ই আপনি প্রশংসিত ও মহিমান্বিত। মুহাম্মদ ﷺ এবং তাঁর পরিবারের উপর আপনার রহমত বর্ষণ করুন।"}
+];
+
+const TX={
+  en:{begin:"Begin Today's Path",cont:"Continue Path",again:"Read Again",quote:'"Verily, in the remembrance of Allah do hearts find rest." — 13:28',str:"days in a row",quests:"Daily Quests",prog:"Today",q1:"Start today's path",q2:"Complete 10 duas",q3:"Finish all 29 duas — earn 50 XP",flip:"flip card to unlock",mark:"tap to mark as read",tap:"tap to reveal",masha:"MashaAllah!",goal:"Daily Goal Reached",ret:"Return to Dashboard",ragain:"Read Again",stt:"Settings",sl:"Language",sth:"Theme",ob:"Begin Your Path"},
+  bn:{begin:"আজকের পথ শুরু করুন",cont:"পথ চালিয়ে যান",again:"আবার পড়ুন",quote:'"জেনে রাখো, আল্লাহর স্মরণেই হৃদয় প্রশান্ত হয়।" — ১৩:২৮',str:"দিন ধারাবাহিক",quests:"দৈনিক লক্ষ্য",prog:"আজ",q1:"আজকের পথ শুরু করুন",q2:"১০টি দুআ পূর্ণ করুন",q3:"সব ২৯টি দুআ শেষ করুন — ৫০ XP অর্জন",flip:"অর্থ দেখতে কার্ড উল্টান",mark:"পড়া শেষ হলে টিক দিন",tap:"অর্থ দেখতে ট্যাপ করুন",masha:"মাশাআল্লাহ!",goal:"দৈনিক লক্ষ্য পূরণ হয়েছে",ret:"ড্যাশবোর্ডে ফিরুন",ragain:"আবার পড়ুন",stt:"সেটিংস",sl:"ভাষা",sth:"থিম",ob:"পথ শুরু করুন"}
+};
+
+const KEY='mithi_v1';
+let S=ls(),idx=0,flipped=false,read=new Set(),lang=S.lang||'en',dark=S.dark||false;
+
+function ls(){
+  try{
+    const s=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(!s)return fr();
+    const today=new Date().toDateString();
+    if(s.lastDate===today)return s;
+    const y=new Date(Date.now()-86400000).toDateString();
+    return{...s,streak:s.lastDate===y?s.streak:0,done:0,goal:false,lastDate:null};
+  }catch(e){return fr();}
+}
+function fr(){return{points:0,streak:0,done:0,goal:false,lastDate:null,lang:'en',dark:false};}
+function sv(){S.lang=lang;S.dark=dark;localStorage.setItem(KEY,JSON.stringify(S));}
+function isEO(d){return !d.a;}
+
+function applyTheme(){
+  document.body.classList.toggle('dk',dark);
+  const ic=dark?'☀':'🌙';
+  ['db1','db2'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=ic;});
+  const tl=document.getElementById('tli'),td=document.getElementById('tda');
+  if(tl){tl.classList.toggle('act',!dark);td.classList.toggle('act',dark);}
+}
+
+function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+
+function applyUI(){
+  const t=TX[lang];
+  set('sl',S.done>0&&!S.goal?t.cont:S.goal?t.again:t.begin);
+  set('dq',t.quote);set('dss',t.str);set('dpl',t.prog);
+  set('qtl',t.quests);set('q1t',t.q1);set('q2t',t.q2);set('q3t',t.q3);
+  set('ft',t.masha);set('fs',t.goal);set('fhl',t.ret);set('fal',t.ragain);
+  set('stt',t.stt);set('slt',t.sl);set('sth',t.sth);set('ob-btn',t.ob);
+  const th=document.getElementById('th');if(th)th.textContent=flipped?t.mark:t.flip;
+  const cth=document.getElementById('cth');if(cth)cth.textContent=t.tap;
+  const te=document.getElementById('ten'),tb2=document.getElementById('tbn');
+  if(te){te.classList.toggle('act',lang==='en');tb2.classList.toggle('act',lang==='bn');}
+}
+
+function showV(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('v-'+id).classList.add('on');}
+function updHdr(){set('h-str',S.streak);set('h-xp',S.points);}
+function updDash(){
+  set('ds',S.streak);set('dx',S.points);
+  set('dlv',Math.floor(S.points/500)+1);
+  document.getElementById('dbar').style.width=((S.points%500)/5)+'%';
+  const done=S.done,tot=D.length;
+  document.getElementById('arc').style.strokeDashoffset=182-(182*(done/tot));
+  set('arct',done+'/'+tot);
+  setQ('q1',S.done>0);setQ('q2',S.done>=10);setQ('q3',S.goal);
+  applyUI();
+}
+function setQ(id,done){
+  const k=document.getElementById(id+'k'),t=document.getElementById(id+'t');
+  k.className='qk'+(done?' dn':'');k.textContent=done?'✓':'';
+  t.className='qt'+(done?' dn':'');
+}
+
+function loadCard(i){
+  const d=D[i];
+  set('cn',i+1);
+  const car=document.getElementById('car'),ceo=document.getElementById('ceo');
+  const csc=document.getElementById('csc'),cth=document.getElementById('cth');
+  const ctr=document.getElementById('ctr'),cd1=document.getElementById('cd1');
+  const cen=document.getElementById('cen'),cbn=document.getElementById('cbn');
+  const show=(el,v)=>{el.style.display=v?'':'none';};
+
+  if(isEO(d)){
+    /* English-only duas (24-29): no flip needed.
+       Show primary language on front face only. Tick unlocks immediately. */
+    show(car,false);show(csc,false);show(cth,false);
+    show(ctr,false);show(cd1,false);show(cen,false);show(cbn,false);
+    show(ceo,true);
+    ceo.textContent=lang==='bn'?d.b:d.e;
+    /* Do NOT flip — keep front face visible */
+    flipped=false;
+    document.getElementById('cfi').classList.remove('flipped');
+    unlock();
+  } else {
+    /* Arabic duas:
+       EN mode: front = Arabic, back = transliteration + English translation
+       BN mode: front = Arabic, back = transliteration + Bengali translation only */
+    show(ceo,false);show(car,true);show(csc,true);show(cth,true);
+    show(cd1,true);
+    car.textContent=d.a;csc.textContent=d.s;
+    cth.textContent=TX[lang].tap;
+    if(lang==='bn'){
+      /* Bengali mode: show Bengali transliteration + Bengali translation only */
+      show(ctr,true);ctr.textContent=d.bt;
+      show(cen,false);show(cbn,true);cbn.textContent=d.b;
+    } else {
+      /* English mode: show Latin transliteration + English translation only */
+      show(ctr,true);ctr.textContent=d.t;
+      show(cen,true);show(cbn,false);cen.textContent='"'+d.e+'"';
+    }
+    flipped=false;
+    document.getElementById('cfi').classList.remove('flipped');
+    lock();
+  }
+  updDots();
+}
+
+function lock(){
+  document.getElementById('tb').disabled=true;
+  document.getElementById('ti').classList.add('lk');
+  document.getElementById('th').textContent=TX[lang].flip;
+}
+function unlock(){
+  document.getElementById('tb').disabled=false;
+  document.getElementById('ti').classList.remove('lk');
+  document.getElementById('th').textContent=TX[lang].mark;
+}
+function updDots(){
+  const w=document.getElementById('dots');w.innerHTML='';
+  D.forEach((_,i)=>{
+    const el=document.createElement('div');
+    el.className='dot'+(i===idx?' cur':read.has(i)||i<S.done?' dn':'');
+    w.appendChild(el);
+  });
+}
+
+function doFlip(){
+  if(isEO(D[idx]))return;
+  flipped=!flipped;
+  document.getElementById('cfi').classList.toggle('flipped',flipped);
+  if(flipped)unlock();else document.getElementById('th').textContent=TX[lang].flip;
+}
+
+function markRead(){
+  read.add(idx);S.done=Math.max(S.done,read.size);sv();updHdr();
+  if(idx<D.length-1){idx++;setTimeout(()=>loadCard(idx),80);}else completeGoal();
+}
+function completeGoal(){
+  const today=new Date().toDateString();
+  if(S.lastDate!==today){S.points+=50;S.streak+=1;S.goal=true;S.lastDate=today;S.done=D.length;}
+  sv();set('fss',S.streak);set('fxp',S.points);
+  showV('fin');setTimeout(spawnConf,300);updHdr();applyUI();
+}
+function spawnConf(){
+  const cols=['#b8862a','#d4a843','#1a6b5a','#3ab99a','#f5e6c0','#e8c97a'];
+  for(let i=0;i<55;i++){
+    const el=document.createElement('div');el.className='conf';
+    el.style.left=Math.random()*100+'vw';el.style.background=cols[~~(Math.random()*cols.length)];
+    el.style.animationDuration=(1.4+Math.random()*2.2)+'s';el.style.animationDelay=Math.random()*.7+'s';
+    el.style.borderRadius=Math.random()>.5?'50%':'2px';
+    document.body.appendChild(el);setTimeout(()=>el.remove(),3800);
+  }
+}
+
+function startRead(){idx=S.goal?0:Math.min(S.done,D.length-1);if(S.goal)read.clear();loadCard(idx);showV('read');}
+function goHome(){updDash();updHdr();showV('dash');}
+function selLang(l,el){document.querySelectorAll('.lopt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');lang=l;}
+function finishOnboard(){S.lang=lang;sv();applyUI();applyTheme();updHdr();updDash();showV('dash');}
+function openSett(){document.getElementById('sov').classList.add('on');}
+function closeSett(){document.getElementById('sov').classList.remove('on');}
+function setLang(l){lang=l;S.lang=l;sv();applyUI();loadCard(idx);}
+function setTheme(t){dark=t==='dark';S.dark=dark;sv();applyTheme();}
+
+document.getElementById('db1').addEventListener('click',()=>{dark=!dark;S.dark=dark;sv();applyTheme();});
+document.getElementById('db2').addEventListener('click',()=>{dark=!dark;S.dark=dark;sv();applyTheme();});
+document.getElementById('sov').addEventListener('click',function(e){if(e.target===this)closeSett();});
+
+let drag=false,sx=0,sy=0,dx2=0,dl=false,ih=false;
+const sc2=document.getElementById('sc');
+function onS(x,y){drag=true;sx=x;sy=y;dx2=0;dl=false;ih=false;sc2.style.transition='none';}
+function onM(x,y){
+  if(!drag)return;const dx=x-sx,dy=y-sy;
+  if(!dl){if(Math.abs(dx)>6||Math.abs(dy)>6){ih=Math.abs(dx)>Math.abs(dy);dl=true;}return;}
+  if(!ih)return;dx2=dx;
+  sc2.style.transform='translateX('+dx2+'px) rotate('+(dx2*0.025)+'deg)';
+  const t=Math.min(Math.abs(dx2)/80,1);
+  document.getElementById('swn').style.opacity=dx2>20?t:'0';
+  document.getElementById('swp').style.opacity=dx2<-20?t:'0';
+}
+function onE(){
+  if(!drag)return;drag=false;sc2.style.transition='transform .3s ease';
+  if(ih&&Math.abs(dx2)>70){
+    if(dx2>0){
+      if(idx<D.length-1){sc2.style.transform='translateX(120%) rotate(6deg)';setTimeout(()=>{sc2.style.transition='none';sc2.style.transform='';idx++;loadCard(idx);},250);}
+      else sc2.style.transform='';
+    }else{
+      if(idx>0){sc2.style.transform='translateX(-120%) rotate(-6deg)';setTimeout(()=>{sc2.style.transition='none';sc2.style.transform='';idx--;loadCard(idx);},250);}
+      else sc2.style.transform='';
+    }
+  }else{sc2.style.transform='';if(!dl||Math.abs(dx2)<10)doFlip();}
+  document.getElementById('swp').style.opacity='0';document.getElementById('swn').style.opacity='0';
+}
+sc2.addEventListener('mousedown',e=>{if(document.getElementById('tb').contains(e.target))return;onS(e.clientX,e.clientY);});
+window.addEventListener('mousemove',e=>{if(drag)onM(e.clientX,e.clientY);});
+window.addEventListener('mouseup',()=>{if(drag)onE();});
+sc2.addEventListener('touchstart',e=>onS(e.touches[0].clientX,e.touches[0].clientY),{passive:true});
+sc2.addEventListener('touchmove',e=>{if(ih&&dl)e.preventDefault();onM(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+sc2.addEventListener('touchend',onE);
+document.getElementById('tb').addEventListener('click',e=>{e.stopPropagation();if(!document.getElementById('tb').disabled)markRead();});
+
+applyTheme();applyUI();
+</script>
+</body>
+</html>
