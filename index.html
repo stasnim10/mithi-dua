@@ -15,6 +15,7 @@
   --border:#e2d8c8;--card:#fffdf8;
   --flame:#e8500a;--flame2:#f5a623;
   --sh:rgba(60,40,10,.08);--radius:28px;
+  --fs-scale:1;
 }
 .dk{
   --bg:#1a1d2e;--surf:#212540;--surf2:#282c4a;
@@ -106,18 +107,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);tran
 .cflip{width:100%;perspective:1200px;-webkit-perspective:1200px;}
 .cfi{transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1),-webkit-transform .6s cubic-bezier(.4,0,.2,1);position:relative;min-height:320px;}
 .cfi.flipped{transform:rotateY(180deg);-webkit-transform:rotateY(180deg);}
-.cf{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:4px;}
+.cf{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:4px;overflow:hidden;transform:rotateY(0deg);-webkit-transform:rotateY(0deg);}
 .cfb{transform:rotateY(180deg);-webkit-transform:rotateY(180deg);}
 
-.arabic{font-family:'Amiri',serif;font-size:clamp(20px,3.8vw,36px);line-height:2;color:var(--ink);text-align:center;direction:rtl;position:relative;z-index:1;}
-.eotext{font-family:'Lora',serif;font-size:clamp(13px,2.1vw,16px);color:var(--ink);text-align:center;line-height:1.85;font-style:italic;position:relative;z-index:1;max-width:420px;}
+.arabic{font-family:'Amiri',serif;font-size:calc(clamp(24px,5vw,40px) * var(--fs-scale));line-height:2;color:var(--ink);text-align:center;direction:rtl;position:relative;z-index:1;word-break:break-word;}
+.eotext{font-family:'Lora',serif;font-size:calc(clamp(15px,2.5vw,18px) * var(--fs-scale));color:var(--ink);text-align:center;line-height:1.85;font-style:italic;position:relative;z-index:1;max-width:420px;word-break:break-word;}
 .taphint{font-size:11px;color:var(--ink3);letter-spacing:1.4px;text-transform:uppercase;display:flex;align-items:center;gap:7px;width:100%;}
 .taphint::before,.taphint::after{content:'';flex:1;height:1px;background:var(--border);}
 .srcb{font-size:11px;color:var(--ink3);border:1px solid var(--border);padding:3px 11px;border-radius:99px;}
-.trlit{font-size:12px;color:var(--teal);text-align:center;line-height:1.75;font-style:italic;font-family:'Noto Sans Bengali','Lora','DM Sans',sans-serif;}
+.trlit{font-size:calc(14px * var(--fs-scale));color:var(--teal);text-align:center;line-height:1.75;font-style:italic;font-family:'Noto Sans Bengali','Lora','DM Sans',sans-serif;word-break:break-word;}
 .div1{width:30px;height:1px;background:var(--border);}
-.entr{font-family:'Lora',serif;font-size:clamp(13px,2vw,15px);color:var(--ink);text-align:center;line-height:1.85;font-style:italic;}
-.bntr{font-family:'Noto Sans Bengali','DM Sans',sans-serif;font-size:clamp(12px,1.8vw,14px);color:var(--ink2);text-align:center;line-height:1.9;}
+.entr{font-family:'Lora',serif;font-size:calc(clamp(15px,2.5vw,18px) * var(--fs-scale));color:var(--ink);text-align:center;line-height:1.85;font-style:italic;word-break:break-word;}
+.bntr{font-family:'Noto Sans Bengali','DM Sans',sans-serif;font-size:calc(clamp(14px,2.2vw,16px) * var(--fs-scale));color:var(--ink2);text-align:center;line-height:1.9;word-break:break-word;}
+
+.fsz-ctrl{display:flex;align-items:center;gap:6px;}
+.fsz-btn{padding:5px 12px;border:1px solid var(--border);border-radius:99px;background:var(--surf2);color:var(--ink);font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;line-height:1;}
+.fsz-btn:hover{border-color:var(--gold);}
+.fsz-lbl{font-size:12px;font-weight:600;color:var(--gold);min-width:22px;text-align:center;}
 
 .swp,.swn{position:absolute;top:50%;transform:translateY(-50%);font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:6px 11px;border-radius:99px;opacity:0;transition:opacity .15s;pointer-events:none;}
 .swp{left:-62px;background:rgba(232,80,10,.1);color:var(--flame);border:1px solid var(--flame2);}
@@ -303,6 +309,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);tran
     <div class="spr"><span id="sth">Theme</span>
       <div class="tgg"><div class="tgo" id="tli" onclick="setTheme('light')">Light</div><div class="tgo" id="tda" onclick="setTheme('dark')">Dark</div></div>
     </div>
+    <div class="spr"><span id="sfst">Text Size</span>
+      <div class="fsz-ctrl">
+        <button class="fsz-btn" onclick="fsStep(-1)">A−</button>
+        <span class="fsz-lbl" id="fslbl">M</span>
+        <button class="fsz-btn" onclick="fsStep(1)">A+</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -340,12 +353,14 @@ const D=[
 ];
 
 const TX={
-  en:{begin:"Begin Today's Path",cont:"Continue Path",again:"Read Again",quote:'"Verily, in the remembrance of Allah do hearts find rest." — 13:28',str:"days in a row",quests:"Daily Quests",prog:"Today",q1:"Start today's path",q2:"Complete 10 duas",q3:"Finish all 29 duas — earn 50 XP",flip:"flip card to unlock",mark:"tap to mark as read",tap:"tap to reveal",masha:"MashaAllah!",goal:"Daily Goal Reached",ret:"Return to Dashboard",ragain:"Read Again",stt:"Settings",sl:"Language",sth:"Theme",ob:"Begin Your Path"},
-  bn:{begin:"আজকের পথ শুরু করুন",cont:"পথ চালিয়ে যান",again:"আবার পড়ুন",quote:'"জেনে রাখো, আল্লাহর স্মরণেই হৃদয় প্রশান্ত হয়।" — ১৩:২৮',str:"দিন ধারাবাহিক",quests:"দৈনিক লক্ষ্য",prog:"আজ",q1:"আজকের পথ শুরু করুন",q2:"১০টি দুআ পূর্ণ করুন",q3:"সব ২৯টি দুআ শেষ করুন — ৫০ XP অর্জন",flip:"অর্থ দেখতে কার্ড উল্টান",mark:"পড়া শেষ হলে টিক দিন",tap:"অর্থ দেখতে ট্যাপ করুন",masha:"মাশাআল্লাহ!",goal:"দৈনিক লক্ষ্য পূরণ হয়েছে",ret:"ড্যাশবোর্ডে ফিরুন",ragain:"আবার পড়ুন",stt:"সেটিংস",sl:"ভাষা",sth:"থিম",ob:"পথ শুরু করুন"}
+  en:{begin:"Begin Today's Path",cont:"Continue Path",again:"Read Again",quote:'"Verily, in the remembrance of Allah do hearts find rest." — 13:28',str:"days in a row",quests:"Daily Quests",prog:"Today",q1:"Start today's path",q2:"Complete 10 duas",q3:"Finish all 29 duas — earn 50 XP",flip:"flip card to unlock",mark:"tap to mark as read",tap:"tap to reveal",masha:"MashaAllah!",goal:"Daily Goal Reached",ret:"Return to Dashboard",ragain:"Read Again",stt:"Settings",sl:"Language",sth:"Theme",fsz:"Text Size",ob:"Begin Your Path"},
+  bn:{begin:"আজকের পথ শুরু করুন",cont:"পথ চালিয়ে যান",again:"আবার পড়ুন",quote:'"জেনে রাখো, আল্লাহর স্মরণেই হৃদয় প্রশান্ত হয়।" — ১৩:২৮',str:"দিন ধারাবাহিক",quests:"দৈনিক লক্ষ্য",prog:"আজ",q1:"আজকের পথ শুরু করুন",q2:"১০টি দুআ পূর্ণ করুন",q3:"সব ২৯টি দুআ শেষ করুন — ৫০ XP অর্জন",flip:"অর্থ দেখতে কার্ড উল্টান",mark:"পড়া শেষ হলে টিক দিন",tap:"অর্থ দেখতে ট্যাপ করুন",masha:"মাশাআল্লাহ!",goal:"দৈনিক লক্ষ্য পূরণ হয়েছে",ret:"ড্যাশবোর্ডে ফিরুন",ragain:"আবার পড়ুন",stt:"সেটিংস",sl:"ভাষা",sth:"থিম",fsz:"লেখার আকার",ob:"পথ শুরু করুন"}
 };
 
 const KEY='mithi_v1';
-let S=ls(),idx=0,flipped=false,read=new Set(),lang=S.lang||'en',dark=S.dark||false;
+const FSZ_STEPS=[0.85,1,1.2,1.4];
+const FSZ_LABELS=['S','M','L','XL'];
+let S=ls(),idx=0,flipped=false,read=new Set(),lang=S.lang||'en',dark=S.dark||false,fsz=S.fsz||1;
 
 function ls(){
   try{
@@ -357,7 +372,7 @@ function ls(){
     return{...s,streak:s.lastDate===y?s.streak:0,done:0,goal:false,lastDate:null};
   }catch(e){return fr();}
 }
-function fr(){return{points:0,streak:0,done:0,goal:false,lastDate:null,lang:'en',dark:false};}
+function fr(){return{points:0,streak:0,done:0,goal:false,lastDate:null,lang:'en',dark:false,fsz:1};}
 function sv(){S.lang=lang;S.dark=dark;localStorage.setItem(KEY,JSON.stringify(S));}
 function isEO(d){return !d.a;}
 
@@ -377,7 +392,7 @@ function applyUI(){
   set('dq',t.quote);set('dss',t.str);set('dpl',t.prog);
   set('qtl',t.quests);set('q1t',t.q1);set('q2t',t.q2);set('q3t',t.q3);
   set('ft',t.masha);set('fs',t.goal);set('fhl',t.ret);set('fal',t.ragain);
-  set('stt',t.stt);set('slt',t.sl);set('sth',t.sth);set('ob-btn',t.ob);
+  set('stt',t.stt);set('slt',t.sl);set('sth',t.sth);set('sfst',t.fsz);set('ob-btn',t.ob);
   const th=document.getElementById('th');if(th)th.textContent=flipped?t.mark:t.flip;
   const cth=document.getElementById('cth');if(cth)cth.textContent=t.tap;
   const te=document.getElementById('ten'),tb2=document.getElementById('tbn');
@@ -502,11 +517,28 @@ function closeSett(){document.getElementById('sov').classList.remove('on');}
 function setLang(l){lang=l;S.lang=l;sv();applyUI();loadCard(idx);}
 function setTheme(t){dark=t==='dark';S.dark=dark;sv();applyTheme();}
 
+function applyFontSize(){
+  document.documentElement.style.setProperty('--fs-scale',fsz);
+  /* Grow card inner height proportionally so text never clips */
+  const h=Math.round(320*Math.max(1,fsz));
+  document.querySelectorAll('.cfi').forEach(el=>el.style.minHeight=h+'px');
+  /* Update label */
+  const closest=FSZ_STEPS.reduce((a,b)=>Math.abs(b-fsz)<Math.abs(a-fsz)?b:a);
+  const lbl=FSZ_LABELS[FSZ_STEPS.indexOf(closest)];
+  const el=document.getElementById('fslbl');if(el)el.textContent=lbl;
+}
+function fsStep(dir){
+  const i=FSZ_STEPS.findIndex(v=>Math.abs(v-fsz)<0.01);
+  const cur=i<0?1:i;
+  const ni=Math.max(0,Math.min(FSZ_STEPS.length-1,cur+dir));
+  fsz=FSZ_STEPS[ni];S.fsz=fsz;sv();applyFontSize();
+}
+
 document.getElementById('db1').addEventListener('click',()=>{dark=!dark;S.dark=dark;sv();applyTheme();});
 document.getElementById('db2').addEventListener('click',()=>{dark=!dark;S.dark=dark;sv();applyTheme();});
 document.getElementById('sov').addEventListener('click',function(e){if(e.target===this)closeSett();});
 
-let drag=false,sx=0,sy=0,dx2=0,dl=false,ih=false;
+let drag=false,sx=0,sy=0,dx2=0,dl=false,ih=false,lastT=0;
 const sc2=document.getElementById('sc');
 function onS(x,y){drag=true;sx=x;sy=y;dx2=0;dl=false;ih=false;sc2.style.transition='none';}
 function onM(x,y){
@@ -531,15 +563,21 @@ function onE(){
   }else{sc2.style.transform='';if(!dl||Math.abs(dx2)<10)doFlip();}
   document.getElementById('swp').style.opacity='0';document.getElementById('swn').style.opacity='0';
 }
-sc2.addEventListener('mousedown',e=>{if(document.getElementById('tb').contains(e.target))return;onS(e.clientX,e.clientY);});
+sc2.addEventListener('mousedown',e=>{if(Date.now()-lastT<500)return;if(document.getElementById('tb').contains(e.target))return;onS(e.clientX,e.clientY);});
 window.addEventListener('mousemove',e=>{if(drag)onM(e.clientX,e.clientY);});
-window.addEventListener('mouseup',()=>{if(drag)onE();});
-sc2.addEventListener('touchstart',e=>{if(document.getElementById('tb').contains(e.target))return;onS(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+window.addEventListener('mouseup',()=>{if(Date.now()-lastT<500)return;if(drag)onE();});
+sc2.addEventListener('touchstart',e=>{lastT=Date.now();if(document.getElementById('tb').contains(e.target))return;onS(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
 sc2.addEventListener('touchmove',e=>{if(ih&&dl)e.preventDefault();onM(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
-sc2.addEventListener('touchend',onE);
+sc2.addEventListener('touchend',e=>{lastT=Date.now();onE();});
 document.getElementById('tb').addEventListener('click',e=>{e.stopPropagation();if(!document.getElementById('tb').disabled)markRead();});
 
-applyTheme();applyUI();
+/* Volume buttons → font size (Android Chrome; iOS blocks this) */
+window.addEventListener('keydown',e=>{
+  if(e.key==='AudioVolumeUp'||e.keyCode===175){e.preventDefault();fsStep(1);}
+  else if(e.key==='AudioVolumeDown'||e.keyCode===174){e.preventDefault();fsStep(-1);}
+});
+
+applyTheme();applyUI();applyFontSize();
 </script>
 </body>
 </html>
