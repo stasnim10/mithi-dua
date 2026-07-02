@@ -65,92 +65,123 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);tran
 .chip.xp{border-color:var(--gold);background:var(--gold-l);color:var(--gold);}
 .dk .chip.xp{background:rgba(212,168,67,.14);}
 .ibtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surf);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:all .2s;color:var(--ink2);}
-.ibtn:hover{background:var(--surf2);}
-@keyframes fl{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.1) scaleX(.93)}}
-.fa{display:inline-block;animation:fl 1.3s ease-in-out infinite;}
-
-/* DASHBOARD */
-#v-dash{min-height:100vh;padding-bottom:28px;position:relative;z-index:1;}
-.dhero{margin:0 14px 14px;background:var(--surf);border:1px solid var(--border);border-radius:var(--radius);padding:36px 24px;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 20px var(--sh);}
-.dhero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -20%,var(--gold-l) 0%,transparent 65%);opacity:.65;pointer-events:none;}
-.dk .dhero::before{opacity:.15;}
-.orn{font-size:11px;letter-spacing:9px;color:var(--gold);opacity:.7;margin-bottom:14px;position:relative;z-index:1;}
-.ht{font-family:'Lora',serif;font-size:clamp(34px,7vw,56px);font-weight:600;color:var(--ink);line-height:1.1;position:relative;z-index:1;}
-.ht b{color:var(--gold);}
-.hq{font-family:'Lora',serif;font-style:italic;font-size:12px;color:var(--ink2);max-width:340px;margin:8px auto 24px;line-height:1.7;position:relative;z-index:1;}
-.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:0 14px 11px;}
-@media(max-width:440px){.g3{grid-template-columns:1fr 1fr;}}
-.sc{background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:16px 14px;box-shadow:0 2px 10px var(--sh);}
-.sl2{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--ink3);margin-bottom:4px;}
-.sv{font-size:24px;font-weight:600;color:var(--ink);}
-.ss{font-size:11px;color:var(--ink3);margin-top:2px;}
-.aw{display:flex;flex-direction:column;align-items:center;gap:3px;}
-.lvb{height:3px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:4px;}
-.lvf{height:100%;background:var(--gold);border-radius:99px;transition:width .8s ease;}
-.qc{margin:0 14px;background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 2px 10px var(--sh);}
-.ql{font-size:10px;text-transform:uppercase;letter-spacing:1.4px;color:var(--ink3);margin-bottom:12px;}
-.qi{display:flex;align-items:center;gap:9px;margin-bottom:9px;font-size:13px;color:var(--ink2);}
-.qk{width:17px;height:17px;min-width:17px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .3s;}
-.qk.dn{background:var(--teal);border-color:var(--teal);color:#fff;}
-.qt.dn{text-decoration:line-through;opacity:.4;}
-
-/* READING */
-#v-read{min-height:100vh;position:relative;z-index:1;overflow:hidden;}
-.rbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 14px 14px;min-height:calc(100vh - 76px);}
-.cstage{width:100%;max-width:540px;position:relative;user-select:none;}
-.scard{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);min-height:440px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 8px 36px var(--sh);position:relative;cursor:grab;touch-action:pan-y;}
-.scard:active{cursor:grabbing;}
-.scard::before{content:'';position:absolute;inset:0;border-radius:var(--radius);background:radial-gradient(ellipse at 50% -10%,var(--gold-l) 0%,transparent 60%);opacity:.4;pointer-events:none;z-index:0;}
-.dk .scard::before{opacity:.08;}
-.cg1{position:absolute;inset:0;border-radius:var(--radius);background:var(--surf2);border:1px solid var(--border);transform:scale(.93) translateY(13px);z-index:-1;}
-.cg2{position:absolute;inset:0;border-radius:var(--radius);background:var(--border);border:1px solid var(--border);transform:scale(.87) translateY(24px);z-index:-2;}
-.cflip{width:100%;perspective:1200px;-webkit-perspective:1200px;}
-.cfi{transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1),-webkit-transform .6s cubic-bezier(.4,0,.2,1);position:relative;min-height:320px;}
-.cfi.flipped{transform:rotateY(180deg);-webkit-transform:rotateY(180deg);}
-.cf{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;padding:4px;overflow:hidden;transform:rotateY(0deg);-webkit-transform:rotateY(0deg);}
-.cfb{transform:rotateY(180deg);-webkit-transform:rotateY(180deg);}
-
-.arabic{font-family:'Amiri',serif;font-size:calc(clamp(24px,5vw,40px) * var(--fs-scale));line-height:2;color:var(--ink);text-align:center;direction:rtl;position:relative;z-index:1;word-break:break-word;}
-.eotext{font-family:'Lora',serif;font-size:calc(clamp(15px,2.5vw,18px) * var(--fs-scale));color:var(--ink);text-align:center;line-height:1.85;font-style:italic;position:relative;z-index:1;max-width:420px;word-break:break-word;}
-.taphint{font-size:11px;color:var(--ink3);letter-spacing:1.4px;text-transform:uppercase;display:flex;align-items:center;gap:7px;width:100%;}
-.taphint::before,.taphint::after{content:'';flex:1;height:1px;background:var(--border);}
-.srcb{font-size:11px;color:var(--ink3);border:1px solid var(--border);padding:3px 11px;border-radius:99px;}
-.trlit{font-size:calc(14px * var(--fs-scale));color:var(--teal);text-align:center;line-height:1.75;font-style:italic;font-family:'Noto Sans Bengali','Lora','DM Sans',sans-serif;word-break:break-word;}
-.div1{width:30px;height:1px;background:var(--border);}
-.entr{font-family:'Lora',serif;font-size:calc(clamp(15px,2.5vw,18px) * var(--fs-scale));color:var(--ink);text-align:center;line-height:1.85;font-style:italic;word-break:break-word;}
-.bntr{font-family:'Noto Sans Bengali','DM Sans',sans-serif;font-size:calc(clamp(14px,2.2vw,16px) * var(--fs-scale));color:var(--ink2);text-align:center;line-height:1.9;word-break:break-word;}
-
-.fsz-ctrl{display:flex;align-items:center;gap:6px;}
-.fsz-btn{padding:5px 12px;border:1px solid var(--border);border-radius:99px;background:var(--surf2);color:var(--ink);font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;line-height:1;}
-.fsz-btn:hover{border-color:var(--gold);}
-.fsz-lbl{font-size:12px;font-weight:600;color:var(--gold);min-width:22px;text-align:center;}
-
-.swp,.swn{position:absolute;top:50%;transform:translateY(-50%);font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:600;padding:6px 11px;border-radius:99px;opacity:0;transition:opacity .15s;pointer-events:none;}
-.swp{left:-62px;background:rgba(232,80,10,.1);color:var(--flame);border:1px solid var(--flame2);}
-.swn{right:-62px;background:var(--teal-l);color:var(--teal);border:1px solid var(--teal);}
-.dk .swn{background:rgba(58,185,154,.1);border-color:#3ab99a;color:#3ab99a;}
-
-.rctr{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;}
-.dots{display:flex;gap:4px;flex-wrap:wrap;justify-content:center;max-width:320px;margin:14px auto 0;}
-.dot{width:5px;height:5px;border-radius:99px;background:var(--border);transition:all .35s;}
-.dot.dn{background:var(--teal);opacity:.5;}
-.dot.cur{background:var(--gold);width:15px;}
-
-.twrap{display:flex;flex-direction:column;align-items:center;gap:7px;margin-top:12px;}
-.tbtn{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:0 4px 18px rgba(26,107,90,.3);}
-.tbtn:hover:not(:disabled){transform:scale(1.08);}
-.tbtn:active:not(:disabled){transform:scale(.95);}
-.tbtn:disabled{background:var(--border);box-shadow:none;cursor:not-allowed;}
-.dk .tbtn:disabled{background:#2e3250;}
-.thint{font-size:11px;color:var(--ink3);}
-.tsvg{width:24px;height:24px;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
-.tsvg.lk{stroke:var(--ink3);}
-.dk .tsvg.lk{stroke:#6a6258;}
-.sarr{display:flex;align-items:center;gap:9px;font-size:11px;color:var(--ink3);margin-top:5px;}
-
-/* 99 NAMES */
-#v-names{min-height:100vh;position:relative;z-index:1;overflow:hidden;}
-#v-names .rbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 14px 14px;min-height:calc(100vh - 76px);}
+const NAMES=[
+{n:1,a:"الله",t:"Allah",e:"The God",b:"আল্লাহ, প্রভু।"},
+{n:2,a:"الرحمن",t:"Ar-Rahman",e:"The Most Gracious, The Entirely Merciful",b:"সবচাইতে দয়ালু, কল্যাণময়, করুণাময়।"},
+{n:3,a:"الرحيم",t:"Ar-Rahim",e:"The Especially Merciful",b:"সচাইতে ক্ষমাশীল।"},
+{n:4,a:"الملك",t:"Al-Malik",e:"The King and Owner of Dominion",b:"অধিপতি।"},
+{n:5,a:"القدوس",t:"Al-Quddus",e:"The Absolutely Pure and Perfect",b:"পূতপবিত্র, নিখুঁত।"},
+{n:6,a:"السلام",t:"As-Salam",e:"The Source of Peace",b:"শান্তি এবং নিরাপত্তার উৎস, ত্রাণকর্তা।"},
+{n:7,a:"المؤمن",t:"Al-Mumin",e:"The Granter of Security and Faith",b:"জামিনদার, সত্য ঘোষণাকারী।"},
+{n:8,a:"المهيمن",t:"Al-Muhaymin",e:"The Guardian, The Witness, The Overseer",b:"অভিভাবক, প্রতিপালক।"},
+{n:9,a:"العزيز",t:"Al-Aziz",e:"The Almighty, The All-Powerful",b:"সর্বশক্তিমান, সবচেয়ে সম্মানিত।"},
+{n:10,a:"الجبار",t:"Al-Jabbar",e:"The Compeller, The Restorer",b:"দুর্নিবার, সমু”চ, মহিমান্বিত।"},
+{n:11,a:"المتكبر",t:"Al-Mutakabbir",e:"The Supreme in Glory, The Rightfully Proud",b:"সৃষ্টিকর্তা।"},
+{n:12,a:"الخالق",t:"Al-Khaliq",e:"The Creator, The Maker",b:"বিবর্ধনকারী, নির্মাণকর্তা, পরিকল্পনাকারী।"},
+{n:13,a:"البارئ",t:"Al-Bari",e:"The Originator, The Inventor",b:"আকৃতিদানকারী।"},
+{n:14,a:"المصور",t:"Al-Musawwir",e:"The Fashioner, The Shaper",b:"পুনঃমার্জনাকারী।"},
+{n:15,a:"الغفار",t:"Al-Ghaffar",e:"The Constant Forgiver, The Great Forgiver",b:"দমনকারী।"},
+{n:16,a:"القهار",t:"Al-Qahhar",e:"The Subduer, The Ever-Dominating",b:"¯’াপনকারী。"},
+{n:17,a:"الوهاب",t:"Al-Wahhab",e:"The Giver of Gifts, The Bestower",b:"আর-রজ্জাক।। অর্থ : রিজিকদাতা।"},
+{n:18,a:"الرزاق",t:"Ar-Razzaq",e:"The Ever-Providing, The Constant Provider",b:"প্রারম্ভকারী, বিজয়দানকারী।"},
+{n:19,a:"الفتاح",t:"Al-Fattah",e:"The Opener, The Judge",b:"সর্বজ্ঞানী, সর্বদর্শী।"},
+{n:20,a:"العليم",t:"Al-Alim",e:"The All-Knowing, The Omniscient",b:"নিয়ন্ত্রণকারী, সরলপথ প্রদর্শনকারী।"},
+{n:21,a:"القابض",t:"Al-Qabid",e:"The Withholder, The Restrainer",b:"প্রসারণকারী।"},
+{n:22,a:"الباسط",t:"Al-Basit",e:"The Extender, The Expander",b:"(অবিশ্বাসীদের) অপমানকারী।"},
+{n:23,a:"الخافض",t:"Al-Khafid",e:"The Reducer, The Abaser",b:"উন্নীতকারী।"},
+{n:24,a:"الرافع",t:"Ar-Rafi",e:"The Exalter, The Elevator",b:"সম্মানপ্রদানকারী।"},
+{n:25,a:"المعز",t:"Al-Muiz",e:"The Honourer, The Bestower of Honor",b:"সম্মানহরণকারী।"},
+{n:26,a:"المذل",t:"Al-Mudill",e:"The Dishonourer, The Humiliator",b:"সর্বশ্রোতা।"},
+{n:27,a:"السميع",t:"As-Sami",e:"The All-Hearing",b:"সর্বদ্রষ্টা।"},
+{n:28,a:"البصير",t:"Al-Basir",e:"The All-Seeing",b:"বিচারপতি।"},
+{n:29,a:"الحكم",t:"Al-Hakam",e:"The Judge, The Giver of Justice",b:"নিখুঁত।"},
+{n:30,a:"العدل",t:"Al-Adl",e:"The Utterly Just",b:"অমায়িক।"},
+{n:31,a:"اللطيف",t:"Al-Latif",e:"The Most Gentle, The Subtle One",b:"সম্যক অবগত।"},
+{n:32,a:"الخبير",t:"Al-Khabir",e:"The All-Aware, The All-Acquainted",b:"ধৈর্যবান, প্রশ্রয়দাতা।"},
+{n:33,a:"الحليم",t:"Al-Halim",e:"The Most Forbearing",b:"সুমহান।"},
+{n:34,a:"العظيم",t:"Al-Azim",e:"The Magnificent, The Supreme",b:"মার্জনাকারী।"},
+{n:35,a:"الغفور",t:"Al-Ghafur",e:"The Forgiving, The Exceedingly Forgiving",b:"সুবিবেচক।"},
+{n:36,a:"الشكور",t:"Ash-Shakur",e:"The Most Appreciative",b:"মহীয়ান।"},
+{n:37,a:"العلي",t:"Al-Ali",e:"The Most High, The Exalted",b:"সুমহান।"},
+{n:38,a:"الكبير",t:"Al-Kabir",e:"The Greatest, The Most Grand",b:"সংরক্ষণকারী।"},
+{n:39,a:"الحفيظ",t:"Al-Hafiz",e:"The Preserver, The All-Heedful",b:"লালনপালনকারী।"},
+{n:40,a:"المقيت",t:"Al-Muqit",e:"The Nourisher, The All-Powerful Maintainer",b:"মীমাংসাকারী।"},
+{n:41,a:"الحسيب",t:"Al-Hasib",e:"The Reckoner",b:"গৌরবান্বিত।"},
+{n:42,a:"الجليل",t:"Al-Jalil",e:"The Majestic",b:"উদার, অকৃপণ।"},
+{n:43,a:"الكريم",t:"Al-Karim",e:"The Most Generous, The Most Noble",b:"সদা জাগ্রত, অতন্দ্র পর্যবেক্ষণকারী।"},
+{n:44,a:"الرقيب",t:"Ar-Raqib",e:"The Watchful, The All-Watchful",b:"সাড়া দানকারী, উত্তরদাতা।"},
+{n:45,a:"المجيب",t:"Al-Mujib",e:"The Responsive, The Answerer",b:"অসীম, সর্বত্র বিরাজমান।"},
+{n:46,a:"الواسع",t:"Al-Wasi",e:"The All-Encompassing, the Boundless",b:"সুবিজ্ঞ, সুদক্ষ।"},
+{n:47,a:"الحكيم",t:"Al-Hakim",e:"The All-Wise",b:"স্নেহশীল।"},
+{n:48,a:"الودود",t:"Al-Wadud",e:"The Most Loving",b:"মহিমান্বিত।"},
+{n:49,a:"المجيد",t:"Al-Majid",e:"The All-Glorious, The Ever-Majestic",b:"পুনরুত্থানকারী।"},
+{n:50,a:"الباعث",t:"Al-Baith",e:"The Resurrector, The Infuser of New Life",b:"সাক্ষ্যদানকারী।"},
+{n:51,a:"الشهيد",t:"As-Shahid",e:"The All-Witnessing",b:"প্রকৃত সত্য।"},
+{n:52,a:"الحق",t:"Al-Haq",e:"The Absolute Truth",b:"সহায় প্রদানকারী, আ¯’াভাজন, উকিল।"},
+{n:53,a:"الوكيل",t:"Al-Wakil",e:"The Trustee, The Disposer of Affairs",b:"ক্ষমতাশালী।"},
+{n:54,a:"القوي",t:"Al-Qawi",e:"The All-Strong",b:"আল মাতীন সুদৃঢ়, সু¯ি’র।"},
+{n:55,a:"المتين",t:"Al-Matin",e:"The Firm, The Steadfast",b:"বন্ধু, সাহায্যকারী, শুভাকাক্সক্ষী।"},
+{n:56,a:"الولي",t:"Al-Wali",e:"The Protector, The Guardian",b:"সকল প্রশংসার দাবীদার, প্রশংসনীয়।"},
+{n:57,a:"الحميد",t:"Al-Hamid",e:"The Praiseworthy, The Most Praised",b:"বর্ণনাকারী, গণনাকারী।"},
+{n:58,a:"المحصي",t:"Al-Muhsi",e:"The All-Enumerating, The Counter",b:"অগ্রণী, প্রথম প্রবর্তক, সৃজনকর্তা।"},
+{n:59,a:"المبدئ",t:"Al-Mubdi",e:"The Originator, The Initiator",b:"পুন:প্রতিষ্ঠাকারী, পুনরূদ্ধারকারি।"},
+{n:60,a:"المعيد",t:"Al-Muid",e:"The Restorer, The Reviver",b:"জীবনদানকারী।"},
+{n:61,a:"المحيي",t:"Al-Muhyi",e:"The Giver of Life",b:"ধ্বংসকারী, মৃত্যু আনয়নকারী।"},
+{n:62,a:"المميت",t:"Al-Mumit",e:"The Taker of Life, The Causer of Death",b:"চিরঞ্জীব, যার কোনো শেষ নাই।"},
+{n:63,a:"الحي",t:"Al-Hayy",e:"The Ever-Living",b:"অভিভাবক, জীবিকানির্বাহ প্রদানকারী।"},
+{n:64,a:"القيوم",t:"Al-Qayyum",e:"The Sustainer, The Self-Subsisting",b:"পর্যবেক্ষক, চির¯’ায়ী।"},
+{n:65,a:"الواجد",t:"Al-Wajid",e:"The Ever-Wealthy, The Self-Sufficient",b:"সুপ্রসিদ্ধ।"},
+{n:66,a:"الماجد",t:"Al-Majid",e:"The Noble, The Generous",b:"এক, অনন্য, অদ্বিতীয়।"},
+{n:67,a:"الواحد",t:"Al-Wahid",e:"The One, The Indivisible",b:"চিরন্তন, অবিনশ্বর, নির্বিকল্প, সুনিপুণ, স্বয়ং সম্পূর্ণ।"},
+{n:68,a:"الأحد",t:"Al-Ahad",e:"The Unique, The Only One",b:"সর্বশক্তিমান।"},
+{n:69,a:"الصمد",t:"As-Samad",e:"The Self-Subsisting, The One Upon Whom All Depend",b:"প্রভাবশালী, সিদ্ধান্তগ্রহণকারী।"},
+{n:70,a:"القادر",t:"Al-Qadir",e:"The Omnipotent, The All-Able",b:"অগ্রগতিতে সহায়তা প্রদানকারী।"},
+{n:71,a:"المقتدر",t:"Al-Muqtadir",e:"The All-Powerful, The Dominant",b:"বিলম্বকারী।"},
+{n:72,a:"المقدم",t:"Al-Muqaddim",e:"The Expediter, The Promoter",b:"সর্বপ্রথম, যার কোনো শুরু নাই।"},
+{n:73,a:"المؤخر",t:"Al-Muakhkhir",e:"The Delayer, The Postponer",b:"সর্বশেষ, যার কোনো শেষ নাই।"},
+{n:74,a:"الأول",t:"Al-Awwal",e:"The First, The Pre-Existing",b:"সুস্পষ্ট, সুপ্রতীয়মান।"},
+{n:75,a:"الأخر",t:"Al-Akhir",e:"The Last, The Ever-Remaining",b:"লুকায়িত, অস্পষ্ট, অন্তর¯’ (যা কিছু দেখা যায় না)।"},
+{n:76,a:"الظاهر",t:"Az-Zahir",e:"The Manifest, The Highest",b:"সুরক্ষাকারী বন্ধু, অনুগ্রহকারী, বন্ধুত্বপূর্ণ প্রভু।"},
+{n:77,a:"الباطن",t:"Al-Batin",e:"The Hidden One, Knower of the Hidden",b:"সর্বো”চ মহিমান্বিত, সুউ”চ।"},
+{n:78,a:"الوالي",t:"Al-Wali",e:"The Sole Governor",b:"কল্যাণকারী।"},
+{n:79,a:"المتعالي",t:"Al-Mutali",e:"The Self-Exalted",b:"বিনম্র, সর্বদা আবর্তিতমান।"},
+{n:80,a:"البر",t:"Al-Barr",e:"The Source of All Goodness",b:"প্রতিফল প্রদানকারী।"},
+{n:81,a:"التواب",t:"At-Tawwab",e:"The Accepter of Repentance, The Ever-Relenting",b:"শাস্তি মউকুফকারী, গুনাহ ক্ষমাকারী।"},
+{n:82,a:"المنتقم",t:"Al-Muntaqim",e:"The Avenger",b:"সদয়, সমবেদনা প্রকাশকারী।"},
+{n:83,a:"العفو",t:"Al-Afuww",e:"The Pardoner",b:"মালিকুল মুলক।"},
+{n:84,a:"الرؤوف",t:"Ar-Rauf",e:"The Most Kind",b:"জুল-জালালি ওয়াল ইকরাম。"},
+{n:85,a:"مالك الملك",t:"Malik-ul-Mulk",e:"Master of the Dominion, Owner of the Kingdom",b:"ন্যায়পরায়ণ, প্রতিদানকারী।"},
+{n:86,a:"ذو الجلال والإكرام",t:"Dhul-Jalal wal-Ikram",e:"Possessor of Glory and Honour",b:"একত্র আনয়নকারী, ঐক্য সাধনকারী।"},
+{n:87,a:"المقسط",t:"Al-Muqsit",e:"The Just One",b:"ঐশ্বর্যবান, স্বতন্ত্র।"},
+{n:88,a:"الجامع",t:"Al-Jami",e:"The Gatherer, the Uniter",b:"সমৃদ্ধকারী, উদ্ধারকারী।"},
+{n:89,a:"الغني",t:"Al-Ghani",e:"The Self-Sufficient, The Free of All Need",b:"প্রতিরোধকারী, রক্ষাকর্তা।"},
+{n:90,a:"المغني",t:"Al-Mughni",e:"The Enricher",b:"যন্ত্রণাদানকারী, উৎপীড়নকারী।"},
+{n:91,a:"المانع",t:"Al-Mani",e:"The Withholder",b:"অনুগ্রাহক, উপকর্তা, হিতকারী।"},
+{n:92,a:"الضار",t:"Ad-Darr",e:"The Creator of Harm",b:"আলো।"},
+{n:93,a:"النافع",t:"An-Nafi",e:"The Propitious, The Benefactor",b:"পথপ্রদর্শক।"},
+{n:94,a:"النور",t:"An-Nur",e:"The Light",b:"অতুলনীয়, অনিধগম্য।"},
+{n:95,a:"الهادي",t:"Al-Hadi",e:"The Guide",b:"অপরিবর্তনীয়, অনন্ত, অসীম, অক্ষয়।"},
+{n:96,a:"البديع",t:"Al-Badi",e:"The Incomparable Originator",b:"সবকিছুর উত্তরাধিকারী।"},
+{n:97,a:"الباقي",t:"Al-Baqi",e:"The Ever-LLasting",b:"সঠিক পথের নির্দেশক।"},
+{n:98,a:"الوارث",t:"Al-Warith",e:"The Inheritor",b:"ধৈর্যশীল।"},
+{n:99,a:"الرشيد",t:"Ar-Rashid",e:"The Guide to the Right Path",b:"সর্বশ্রেষ্ঠ, গৌরবান্বিত।"}
+];
+.nlist{display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 180px);overflow:auto;padding-right:4px;}
+.nitem{appearance:none;-webkit-appearance:none;background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:16px 16px 14px;box-shadow:0 2px 10px var(--sh);display:flex;flex-direction:column;gap:8px;cursor:pointer;text-align:left;width:100%;font:inherit;}
+.nitem-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.nitem-num{font-size:10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--teal);font-weight:700;white-space:nowrap;}
+.nitem-ar{font-family:'Amiri',serif;font-size:calc(22px * var(--fs-scale));line-height:1.7;direction:rtl;text-align:right;color:var(--ink);}
+.nitem-tr{font-size:calc(13px * var(--fs-scale));color:var(--teal);font-style:italic;line-height:1.6;}
+.nitem-mean{font-family:'Lora',serif;font-size:calc(14px * var(--fs-scale));color:var(--ink2);line-height:1.8;}
+.nitem-mean.bn{font-family:'Noto Sans Bengali','DM Sans',sans-serif;}
+.nitem-read{margin-left:auto;font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);font-weight:700;}
+.nprog{width:100%;max-width:540px;margin-top:12px;display:flex;flex-direction:column;gap:8px;}
+.nprog-top{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:1px;}
+.nprog-label{font-weight:700;color:var(--teal);}
+.nprog-rail{position:relative;height:8px;border-radius:999px;background:var(--surf2);border:1px solid var(--border);overflow:hidden;box-shadow:0 1px 4px var(--sh) inset;}
+.nprog-fill{position:absolute;inset:0 auto 0 0;width:0%;border-radius:inherit;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .35s ease;}
+.nprog-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;color:var(--ink3);}
+.nprog-meta strong{color:var(--ink);font-weight:600;}
 
 /* FINISHED */
 #v-fin{min-height:100vh;align-items:center;justify-content:center;padding:28px 18px;text-align:center;gap:22px;position:relative;z-index:1;}
@@ -315,34 +346,62 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);tran
     <div class="ibtn" id="db3">🌙</div>
   </header>
   <div class="rbody">
-    <div class="cstage">
-      <div class="cg2"></div><div class="cg1"></div>
-      <div class="scard" id="nc">
-        <span class="swp" id="nswp">← Prev</span>
-        <span class="swn" id="nswn">Next →</span>
-        <div class="cflip">
-          <div class="cfi" id="ncfi">
-            <div class="cf">
-              <div style="font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;" id="nnum"></div>
-              <div class="arabic" id="narab"></div>
-              <div class="trlit" id="ntrans"></div>
-              <div class="taphint" id="nth"></div>
-            </div>
-            <div class="cf cfb">
-              <div class="eotext" id="nmean"></div>
+    <div class="nctl">
+      <div class="nseg" role="tablist" aria-label="Name view toggle">
+        <button class="nseg-btn act" id="nmode-card" type="button" onclick="setNameView('card')">Card</button>
+        <button class="nseg-btn" id="nmode-list" type="button" onclick="setNameView('list')">List</button>
+      </div>
+      <button class="nsort" id="nsort" type="button" onclick="toggleNameSort()">Sort: Original</button>
+    </div>
+    <div class="nmode-views">
+      <div class="ncard-view">
+        <div class="cstage">
+          <div class="cg2"></div><div class="cg1"></div>
+          <div class="scard" id="nc">
+            <span class="swp" id="nswp">← Prev</span>
+            <span class="swn" id="nswn">Next →</span>
+            <div class="cflip">
+              <div class="cfi" id="ncfi">
+                <div class="cf">
+                  <div style="font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;" id="nnum"></div>
+                  <div class="arabic" id="narab"></div>
+                  <div class="trlit" id="ntrans"></div>
+                  <div class="taphint" id="nth"></div>
+                </div>
+                <div class="cf cfb">
+                  <div class="eotext" id="nmean"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="nprog" aria-label="Progress through names">
+          <div class="nprog-top">
+            <span class="nprog-label" id="nprogLabel">Name 1</span>
+            <span id="nprogPct">1%</span>
+          </div>
+          <div class="nprog-rail"><div class="nprog-fill" id="nprogFill"></div></div>
+          <div class="nprog-meta">
+            <span id="nprogSeen">0 read</span>
+            <span><strong id="nprogNow">1</strong> of <strong id="nprogTotal">99</strong></span>
+          </div>
+        </div>
+        <div class="twrap">
+          <button class="tbtn" id="ntb" disabled onclick="markNameRead()">
+            <svg class="tsvg lk" id="nti" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+          <div class="thint" id="nth2"></div>
+        </div>
+        <div class="sarr"><span>←</span><span>swipe to navigate · tap card to reveal</span><span>→</span></div>
+      </div>
+      <div class="nlist-view">
+        <div class="nlist-head">
+          <span id="nlistCount">99 names</span>
+          <span id="nlistHint">Tap a name to open the card</span>
+        </div>
+        <div class="nlist" id="nlist"></div>
       </div>
     </div>
-    <div class="dots" id="ndots"></div>
-    <div class="twrap">
-      <button class="tbtn" id="ntb" disabled onclick="markNameRead()">
-        <svg class="tsvg lk" id="nti" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-      </button>
-      <div class="thint" id="nth2"></div>
-    </div>
-    <div class="sarr"><span>←</span><span>swipe to navigate · tap card to reveal</span><span>→</span></div>
   </div>
 </div>
 
@@ -535,6 +594,14 @@ function applyTheme(){
 }
 
 function set(id,v){const el=document.getElementById(id);if(el)el.textContent=v;}
+
+function nameOrder(){
+  return [...NAMES].sort((a,b)=>nameSort==='az'?a.t.localeCompare(b.t):a.n-b.n);
+}
+
+function currentName(){
+  return nameOrder()[nidx];
+}
 
 function applyUI(){
   const t=TX[lang];
@@ -730,10 +797,70 @@ window.addEventListener('keydown',e=>{
 });
 
 /* 99 NAMES FUNCTIONS */
-let nidx=0,nflipped=false,nread=new Set(),ndrag=false,nsx=0,nsy=0,ndx2=0,ndl=false,nih=false,nlastT=0;
+let nidx=0,nflipped=false,nread=new Set(),ndrag=false,nsx=0,nsy=0,ndx2=0,ndl=false,nih=false,nlastT=0,nameView='card',nameSort='orig';
+
+function updateNameControls(){
+  const namesView=document.getElementById('v-names');
+  if(namesView){
+    namesView.classList.toggle('card-mode',nameView==='card');
+    namesView.classList.toggle('list-mode',nameView==='list');
+  }
+  const cardBtn=document.getElementById('nmode-card');
+  const listBtn=document.getElementById('nmode-list');
+  if(cardBtn)cardBtn.classList.toggle('act',nameView==='card');
+  if(listBtn)listBtn.classList.toggle('act',nameView==='list');
+  const sortLabel=document.getElementById('nsort');
+  if(sortLabel)sortLabel.textContent='Sort: '+(nameSort==='az'?'A-Z':'Original');
+}
+
+function setNameView(view){
+  nameView=view;
+  updateNameControls();
+  if(view==='list')renderNameList();
+}
+
+function toggleNameSort(){
+  const currentNumber=currentName().n;
+  nameSort=nameSort==='orig'?'az':'orig';
+  nidx=nameOrder().findIndex(item=>item.n===currentNumber);
+  updateNameControls();
+  if(nameView==='list')renderNameList();
+  else loadNameCard(nidx);
+}
+
+function renderNameList(){
+  const list=document.getElementById('nlist');
+  if(!list)return;
+  const items=nameOrder();
+  list.innerHTML='';
+  set('nlistCount',items.length+' names');
+  set('nlistHint',nameSort==='az'?'Sorted A-Z by transliteration':'Original order');
+  items.forEach((name)=>{
+    const row=document.createElement('button');
+    row.type='button';
+    row.className='nitem';
+    row.innerHTML=`
+      <div class="nitem-top">
+        <span class="nitem-num"># ${name.n}</span>
+        ${nread.has(name.n)?'<span class="nitem-read">Read</span>':''}
+      </div>
+      <div class="nitem-ar">${name.a}</div>
+      <div class="nitem-tr">${name.t}</div>
+      <div class="nitem-mean ${lang==='bn'?'bn':''}">${lang==='bn'?name.b:name.e}</div>
+    `;
+    row.addEventListener('click',()=>{
+      nameView='card';
+      nidx=nameOrder().findIndex(item=>item.n===name.n);
+      updateNameControls();
+      loadNameCard(nidx);
+      showV('names');
+    });
+    list.appendChild(row);
+  });
+}
 
 function loadNameCard(i){
-  const n=NAMES[i];
+  const n=currentName();
   set('ncn',i+1);
   const nnum=document.getElementById('nnum'),narab=document.getElementById('narab');
   const ntrans=document.getElementById('ntrans'),nmean=document.getElementById('nmean');
@@ -750,12 +877,17 @@ function loadNameCard(i){
 }
 
 function updateNameDots(){
-  const w=document.getElementById('ndots');w.innerHTML='';
-  NAMES.forEach((_,i)=>{
-    const el=document.createElement('div');
-    el.className='dot'+(i===nidx?' cur':nread.has(i)?' dn':'');
-    w.appendChild(el);
-  });
+  const total=nameOrder().length;
+  const current=nidx+1;
+  const seen=nread.size;
+  const fill=document.getElementById('nprogFill');
+  const pct=Math.max(0,Math.min(100,(current/total)*100));
+  if(fill)fill.style.width=pct+'%';
+  set('nprogLabel',nameSort==='az'?'A-Z Progress':'Reading Progress');
+  set('nprogPct',Math.round(pct)+'%');
+  set('nprogSeen',seen+' read');
+  set('nprogNow',current);
+  set('nprogTotal',total);
 }
 
 function lockName(){
@@ -777,12 +909,15 @@ function doNameFlip(){
 }
 
 function markNameRead(){
-  nread.add(nidx);
-  if(nidx<NAMES.length-1){nidx++;setTimeout(()=>loadNameCard(nidx),80);}else goHome();
+  nread.add(currentName().n);
+  if(nidx<nameOrder().length-1){nidx++;setTimeout(()=>loadNameCard(nidx),80);}else goHome();
 }
 
 function showNames(){
   nidx=0;nflipped=false;nread.clear();
+  nameView='card';
+  updateNameControls();
+  renderNameList();
   loadNameCard(nidx);
   showV('names');
 }
@@ -799,9 +934,10 @@ function onNM(x,y){
 }
 function onNE(){
   if(!ndrag)return;ndrag=false;document.getElementById('nc').style.transition='transform .3s ease';
+  if(nameView!=='card'){document.getElementById('nc').style.transform='';return;}
   if(nih&&Math.abs(ndx2)>70){
     if(ndx2>0){
-      if(nidx<NAMES.length-1){document.getElementById('nc').style.transform='translateX(120%) rotate(6deg)';setTimeout(()=>{document.getElementById('nc').style.transition='none';document.getElementById('nc').style.transform='';nidx++;loadNameCard(nidx);},250);}
+      if(nidx<nameOrder().length-1){document.getElementById('nc').style.transform='translateX(120%) rotate(6deg)';setTimeout(()=>{document.getElementById('nc').style.transition='none';document.getElementById('nc').style.transform='';nidx++;loadNameCard(nidx);},250);}
       else document.getElementById('nc').style.transform='';
     }else{
       if(nidx>0){document.getElementById('nc').style.transform='translateX(-120%) rotate(-6deg)';setTimeout(()=>{document.getElementById('nc').style.transition='none';document.getElementById('nc').style.transform='';nidx--;loadNameCard(nidx);},250);}
@@ -820,7 +956,7 @@ nc.addEventListener('touchmove',e=>{if(nih&&ndl)e.preventDefault();onNM(e.touche
 nc.addEventListener('touchend',e=>{nlastT=Date.now();onNE();});
 document.getElementById('ntb').addEventListener('click',e=>{e.stopPropagation();if(!document.getElementById('ntb').disabled)markNameRead();});
 
-applyTheme();applyUI();applyFontSize();
+applyTheme();applyUI();applyFontSize();updateNameControls();renderNameList();
 </script>
 </body>
 </html>
