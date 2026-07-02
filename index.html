@@ -149,31 +149,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);tran
 .sarr{display:flex;align-items:center;gap:9px;font-size:11px;color:var(--ink3);margin-top:5px;}
 
 /* 99 NAMES */
-#v-names{min-height:100vh;padding-bottom:28px;position:relative;z-index:1;}
-.nbody{flex:1;padding:16px 14px 28px;}
-.nhero{background:var(--surf);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 20px var(--sh);margin-bottom:20px;}
-.nhero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -20%,var(--teal-l) 0%,transparent 65%);opacity:.65;pointer-events:none;}
-.dk .nhero::before{opacity:.15;}
-.nt{font-family:'Lora',serif;font-size:clamp(28px,6vw,44px);font-weight:600;color:var(--ink);line-height:1.1;position:relative;z-index:1;}
-.nt b{color:var(--teal);}
-.nsubtitle{font-family:'Lora',serif;font-style:italic;font-size:13px;color:var(--ink2);max-width:380px;margin:12px auto 4px;line-height:1.7;position:relative;z-index:1;}
-.nintro{font-size:12px;color:var(--ink3);max-width:380px;margin:8px auto 0;line-height:1.6;position:relative;z-index:1;}
-.nsearch{width:100%;max-width:400px;margin:0 auto 20px;display:flex;gap:8px;padding:0 2px;}
-.nsearch input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:14px;background:var(--surf);color:var(--ink);font-size:13px;font-family:'DM Sans',sans-serif;transition:all .2s;}
-.nsearch input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(26,107,90,.1);}
-.dk .nsearch input:focus{box-shadow:0 0 0 3px rgba(58,185,154,.1);}
-.nsearch input::placeholder{color:var(--ink3);}
-.ngrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px;}
-@media(max-width:480px){.ngrid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;}}
-.ncard{background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:16px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 2px 10px var(--sh);transition:all .2s;cursor:pointer;}
-.ncard:hover{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 4px 16px rgba(26,107,90,.15);}
-.dk .ncard:hover{box-shadow:0 4px 16px rgba(58,185,154,.15);}
-.nnum{font-size:11px;font-weight:600;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
-.narabic{font-family:'Amiri',serif;font-size:18px;color:var(--ink);direction:rtl;margin-bottom:8px;line-height:1.4;word-break:break-word;}
-.ntransl{font-size:12px;font-weight:600;color:var(--gold);font-style:italic;margin-bottom:6px;}
-.nmeaning{font-size:11px;color:var(--ink2);line-height:1.5;word-break:break-word;}
-.nmeaning-bn{font-family:'Noto Sans Bengali','DM Sans',sans-serif;font-size:11px;color:var(--ink3);line-height:1.5;margin-top:4px;word-break:break-word;}
-.nresults{text-align:center;color:var(--ink3);font-size:12px;padding:20px;}
+#v-names{min-height:100vh;position:relative;z-index:1;overflow:hidden;}
+#v-names .rbody{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 14px 14px;min-height:calc(100vh - 76px);}
 
 /* FINISHED */
 #v-fin{min-height:100vh;align-items:center;justify-content:center;padding:28px 18px;text-align:center;gap:22px;position:relative;z-index:1;}
@@ -334,24 +311,38 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);tran
 <div id="v-names" class="view">
   <header class="hdr">
     <div class="ibtn" onclick="goHome()">←</div>
-    <div style="font-size:16px;font-weight:600;color:var(--ink);" id="ntitle">99 Names</div>
+    <div class="rctr">Name <span id="ncn">1</span> / 99</div>
     <div class="ibtn" id="db3">🌙</div>
   </header>
-  <div class="nbody">
-    <div class="nhero">
-      <div class="nt">Al-Asmāʾ<br><b>al-Ḥusnā</b></div>
-      <div class="nsubtitle">The 99 Beautiful Names of Allah</div>
-      <div class="nintro" id="nintro">Each name reflects a divine attribute. Reflect on these names to deepen your connection with Allah.</div>
+  <div class="rbody">
+    <div class="cstage">
+      <div class="cg2"></div><div class="cg1"></div>
+      <div class="scard" id="nc">
+        <span class="swp" id="nswp">← Prev</span>
+        <span class="swn" id="nswn">Next →</span>
+        <div class="cflip">
+          <div class="cfi" id="ncfi">
+            <div class="cf">
+              <div style="font-size:11px;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;" id="nnum"></div>
+              <div class="arabic" id="narab"></div>
+              <div class="trlit" id="ntrans"></div>
+              <div class="taphint" id="nth"></div>
+            </div>
+            <div class="cf cfb">
+              <div class="eotext" id="nmean"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="nsearch">
-      <input type="text" id="nsearch" placeholder="Search names..." onkeyup="filterNames()">
+    <div class="dots" id="ndots"></div>
+    <div class="twrap">
+      <button class="tbtn" id="ntb" disabled onclick="markNameRead()">
+        <svg class="tsvg lk" id="nti" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </button>
+      <div class="thint" id="nth2"></div>
     </div>
-    <div class="ngrid" id="ngrid">
-      <!-- Names will be dynamically inserted here -->
-    </div>
-    <div id="nnoResults" style="display:none;">
-      <div class="nresults">No names found matching your search.</div>
-    </div>
+    <div class="sarr"><span>←</span><span>swipe to navigate · tap card to reveal</span><span>→</span></div>
   </div>
 </div>
 
@@ -416,102 +407,102 @@ const TX={
 
 const NAMES=[
 {n:1,a:"الله",t:"Allah",e:"The God",b:"আল্লাহ"},
-{n:2,a:"الرحمن",t:"Ar-Rahman",e:"The Most Gracious",b:"পরম দয়ালু"},
-{n:3,a:"الرحيم",t:"Ar-Rahim",e:"The Most Merciful",b:"চরম দয়ালু"},
-{n:4,a:"الملك",t:"Al-Malik",e:"The King",b:"বাদশাহ"},
-{n:5,a:"القدوس",t:"Al-Quddus",e:"The Holy",b:"পবিত্র"},
+{n:2,a:"الرحمن",t:"Ar-Rahman",e:"The Most Gracious, The Entirely Merciful",b:"পরম দয়ালু"},
+{n:3,a:"الرحيم",t:"Ar-Rahim",e:"The Especially Merciful",b:"চরম দয়ালু"},
+{n:4,a:"الملك",t:"Al-Malik",e:"The King and Owner of Dominion",b:"বাদশাহ"},
+{n:5,a:"القدوس",t:"Al-Quddus",e:"The Absolutely Pure and Perfect",b:"পবিত্র"},
 {n:6,a:"السلام",t:"As-Salam",e:"The Source of Peace",b:"শান্তিদাতা"},
-{n:7,a:"المؤمن",t:"Al-Mumin",e:"The Guarantor of Security",b:"বিশ্বাস দেওয়ানো"},
-{n:8,a:"المهيمن",t:"Al-Muhaymin",e:"The Guardian, the Watchful",b:"রক্ষক"},
-{n:9,a:"العزيز",t:"Al-Aziz",e:"The Mighty",b:"শক্তিশালী"},
-{n:10,a:"الجبار",t:"Al-Jabbar",e:"The Irresistible Force",b:"শক্তিশালী"},
-{n:11,a:"المتكبر",t:"Al-Mutakabbir",e:"The Majestic",b:"গর্বী"},
-{n:12,a:"الخالق",t:"Al-Khaliq",e:"The Creator",b:"স্রষ্টা"},
-{n:13,a:"البارئ",t:"Al-Bari",e:"The Maker of Order",b:"নির্মাতা"},
-{n:14,a:"المصور",t:"Al-Musawwir",e:"The Shaper of Beauty",b:"রূপদাতা"},
-{n:15,a:"الغفار",t:"Al-Ghaffar",e:"The Pardoner",b:"ক্ষমাশীল"},
-{n:16,a:"القهار",t:"Al-Qahhar",e:"The Overpowering Force",b:"পরাক্রমশালী"},
-{n:17,a:"الوهاب",t:"Al-Wahhab",e:"The Giver of Gifts",b:"দানশীল"},
-{n:18,a:"الرزاق",t:"Ar-Razzaq",e:"The Sustainer",b:"জীবিকাদাতা"},
-{n:19,a:"الفتاح",t:"Al-Fattah",e:"The Opener",b:"খোলাসারিকারী"},
-{n:20,a:"العليم",t:"Al-Alim",e:"The All-Knowing",b:"সর্বজ্ঞ"},
-{n:21,a:"القابض",t:"Al-Qabid",e:"The Restrainer",b:"সংকুচনকারী"},
-{n:22,a:"الباسط",t:"Al-Basit",e:"The Expander",b:"প্রসারকারী"},
-{n:23,a:"الخافض",t:"Al-Khafid",e:"The Reducer",b:"অবনমনকারী"},
-{n:24,a:"الرافع",t:"Ar-Rafi",e:"The Exalter",b:"উন্নয়নকারী"},
-{n:25,a:"المعز",t:"Al-Muiz",e:"The Bestower of Honor",b:"সম্মান দায়ক"},
-{n:26,a:"المذل",t:"Al-Mudill",e:"The Humiliator",b:"অপমানকারী"},
+{n:7,a:"المؤمن",t:"Al-Mumin",e:"The Granter of Security and Faith",b:"বিশ্বাস দেওয়ানো"},
+{n:8,a:"المهيمن",t:"Al-Muhaymin",e:"The Guardian, The Witness, The Overseer",b:"রক্ষক"},
+{n:9,a:"العزيز",t:"Al-Aziz",e:"The Almighty, The All-Powerful",b:"শক্তিশালী"},
+{n:10,a:"الجبار",t:"Al-Jabbar",e:"The Compeller, The Restorer",b:"শক্তিশালী"},
+{n:11,a:"المتكبر",t:"Al-Mutakabbir",e:"The Supreme in Glory, The Rightfully Proud",b:"গর্বী"},
+{n:12,a:"الخالق",t:"Al-Khaliq",e:"The Creator, The Maker",b:"স্রষ্টা"},
+{n:13,a:"البارئ",t:"Al-Bari",e:"The Originator, The Inventor",b:"নির্মাতা"},
+{n:14,a:"المصور",t:"Al-Musawwir",e:"The Fashioner, The Shaper",b:"রূপদাতা"},
+{n:15,a:"الغفار",t:"Al-Ghaffar",e:"The Constant Forgiver, The Great Forgiver",b:"ক্ষমাশীল"},
+{n:16,a:"القهار",t:"Al-Qahhar",e:"The Subduer, The Ever-Dominating",b:"পরাক্রমশালী"},
+{n:17,a:"الوهاب",t:"Al-Wahhab",e:"The Giver of Gifts, The Bestower",b:"দানশীল"},
+{n:18,a:"الرزاق",t:"Ar-Razzaq",e:"The Ever-Providing, The Constant Provider",b:"জীবিকাদাতা"},
+{n:19,a:"الفتاح",t:"Al-Fattah",e:"The Opener, The Judge",b:"খোলাসারিকারী"},
+{n:20,a:"العليم",t:"Al-Alim",e:"The All-Knowing, The Omniscient",b:"সর্বজ্ঞ"},
+{n:21,a:"القابض",t:"Al-Qabid",e:"The Withholder, The Restrainer",b:"সংকুচনকারী"},
+{n:22,a:"الباسط",t:"Al-Basit",e:"The Extender, The Expander",b:"প্রসারকারী"},
+{n:23,a:"الخافض",t:"Al-Khafid",e:"The Reducer, The Abaser",b:"অবনমনকারী"},
+{n:24,a:"الرافع",t:"Ar-Rafi",e:"The Exalter, The Elevator",b:"উন্নয়নকারী"},
+{n:25,a:"المعز",t:"Al-Muiz",e:"The Honourer, The Bestower of Honor",b:"সম্মান দায়ক"},
+{n:26,a:"المذل",t:"Al-Mudill",e:"The Dishonourer, The Humiliator",b:"অপমানকারী"},
 {n:27,a:"السميع",t:"As-Sami",e:"The All-Hearing",b:"সর্বশ্রোতা"},
 {n:28,a:"البصير",t:"Al-Basir",e:"The All-Seeing",b:"সর্বদ্রষ্টা"},
-{n:29,a:"الحكم",t:"Al-Hakam",e:"The Judge",b:"বিচারক"},
-{n:30,a:"العدل",t:"Al-Adl",e:"The Just",b:"ন্যায়পরায়ণ"},
-{n:31,a:"اللطيف",t:"Al-Latif",e:"The Subtle One",b:"সূক্ষ্ম"},
-{n:32,a:"الخبير",t:"Al-Khabir",e:"The All-Aware",b:"অবগত"},
-{n:33,a:"الحليم",t:"Al-Halim",e:"The Clement",b:"সহনশীল"},
-{n:34,a:"العظيم",t:"Al-Azim",e:"The Mighty",b:"মহান"},
-{n:35,a:"الغفور",t:"Al-Ghafur",e:"The Forgiving",b:"অত্যন্ত ক্ষমাশীল"},
-{n:36,a:"الشكور",t:"Ash-Shakur",e:"The Appreciative",b:"কৃতজ্ঞ"},
-{n:37,a:"العلي",t:"Al-Ali",e:"The Most High",b:"সর্বোচ্চ"},
-{n:38,a:"الكبير",t:"Al-Kabir",e:"The Greatest",b:"সর্ববৃহৎ"},
-{n:39,a:"الحفيظ",t:"Al-Hafiz",e:"The Preserver",b:"রক্ষাকারী"},
-{n:40,a:"المقيت",t:"Al-Muqit",e:"The Sustainer",b:"জীবিকা প্রদানকারী"},
+{n:29,a:"الحكم",t:"Al-Hakam",e:"The Judge, The Giver of Justice",b:"বিচারক"},
+{n:30,a:"العدل",t:"Al-Adl",e:"The Utterly Just",b:"ন্যায়পরায়ণ"},
+{n:31,a:"اللطيف",t:"Al-Latif",e:"The Most Gentle, The Subtle One",b:"সূক্ষ্ম"},
+{n:32,a:"الخبير",t:"Al-Khabir",e:"The All-Aware, The All-Acquainted",b:"অবগত"},
+{n:33,a:"الحليم",t:"Al-Halim",e:"The Most Forbearing",b:"সহনশীল"},
+{n:34,a:"العظيم",t:"Al-Azim",e:"The Magnificent, The Supreme",b:"মহান"},
+{n:35,a:"الغفور",t:"Al-Ghafur",e:"The Forgiving, The Exceedingly Forgiving",b:"অত্যন্ত ক্ষমাশীল"},
+{n:36,a:"الشكور",t:"Ash-Shakur",e:"The Most Appreciative",b:"কৃতজ্ঞ"},
+{n:37,a:"العلي",t:"Al-Ali",e:"The Most High, The Exalted",b:"সর্বোচ্চ"},
+{n:38,a:"الكبير",t:"Al-Kabir",e:"The Greatest, The Most Grand",b:"সর্ববৃহৎ"},
+{n:39,a:"الحفيظ",t:"Al-Hafiz",e:"The Preserver, The All-Heedful",b:"রক্ষাকারী"},
+{n:40,a:"المقيت",t:"Al-Muqit",e:"The Nourisher, The All-Powerful Maintainer",b:"জীবিকা প্রদানকারী"},
 {n:41,a:"الحسيب",t:"Al-Hasib",e:"The Reckoner",b:"হিসাব-গ্রহণকারী"},
-{n:42,a:"الجليل",t:"Al-Jalil",e:"The Sublime One",b:"মহিমান্বিত"},
-{n:43,a:"الكريم",t:"Al-Karim",e:"The Generous",b:"উদার"},
-{n:44,a:"الرقيب",t:"Ar-Raqib",e:"The Watchful",b:"পর্যবেক্ষক"},
-{n:45,a:"المجيب",t:"Al-Mujib",e:"The Responsive",b:"প্রতিক্রিয়াশীল"},
-{n:46,a:"الواسع",t:"Al-Wasi",e:"The All-Encompassing",b:"বিস্তৃত"},
+{n:42,a:"الجليل",t:"Al-Jalil",e:"The Majestic",b:"মহিমান্বিত"},
+{n:43,a:"الكريم",t:"Al-Karim",e:"The Most Generous, The Most Noble",b:"উদার"},
+{n:44,a:"الرقيب",t:"Ar-Raqib",e:"The Watchful, The All-Watchful",b:"পর্যবেক্ষক"},
+{n:45,a:"المجيب",t:"Al-Mujib",e:"The Responsive, The Answerer",b:"প্রতিক্রিয়াশীল"},
+{n:46,a:"الواسع",t:"Al-Wasi",e:"The All-Encompassing, the Boundless",b:"বিস্তৃত"},
 {n:47,a:"الحكيم",t:"Al-Hakim",e:"The All-Wise",b:"জ্ঞানী"},
-{n:48,a:"الودود",t:"Al-Wadud",e:"The Loving One",b:"ভালোবাসাকারী"},
-{n:49,a:"المجيد",t:"Al-Majid",e:"The Glorious",b:"গরিমায়িত"},
-{n:50,a:"الباعث",t:"Al-Baith",e:"The Resurrector",b:"পুনরুত্থানকারী"},
-{n:51,a:"الشهيد",t:"As-Shahid",e:"The Witness",b:"সাক্ষী"},
-{n:52,a:"الحق",t:"Al-Haq",e:"The Truth",b:"সত্য"},
-{n:53,a:"الوكيل",t:"Al-Wakil",e:"The Trustee",b:"পরিচালক"},
-{n:54,a:"القوي",t:"Al-Qawi",e:"The Strong",b:"শক্তিশালী"},
-{n:55,a:"المتين",t:"Al-Matin",e:"The Firm One",b:"দৃঢ়"},
-{n:56,a:"الولي",t:"Al-Wali",e:"The Friendly Lord",b:"অভিভাবক"},
-{n:57,a:"الحميد",t:"Al-Hamid",e:"The Praiseworthy",b:"প্রশংসিত"},
-{n:58,a:"المحصي",t:"Al-Muhsi",e:"The Counter",b:"গণনাকারী"},
-{n:59,a:"المبدئ",t:"Al-Mubdi",e:"The Originator",b:"সৃষ্টিকারী"},
-{n:60,a:"المعيد",t:"Al-Muid",e:"The Restorer",b:"পুনরাবৃত্তিকারী"},
+{n:48,a:"الودود",t:"Al-Wadud",e:"The Most Loving",b:"ভালোবাসাকারী"},
+{n:49,a:"المجيد",t:"Al-Majid",e:"The All-Glorious, The Ever-Majestic",b:"গরিমায়িত"},
+{n:50,a:"الباعث",t:"Al-Baith",e:"The Resurrector, The Infuser of New Life",b:"পুনরুত্থানকারী"},
+{n:51,a:"الشهيد",t:"As-Shahid",e:"The All-Witnessing",b:"সাক্ষী"},
+{n:52,a:"الحق",t:"Al-Haq",e:"The Absolute Truth",b:"সত্য"},
+{n:53,a:"الوكيل",t:"Al-Wakil",e:"The Trustee, The Disposer of Affairs",b:"পরিচালক"},
+{n:54,a:"القوي",t:"Al-Qawi",e:"The All-Strong",b:"শক্তিশালী"},
+{n:55,a:"المتين",t:"Al-Matin",e:"The Firm, The Steadfast",b:"দৃঢ়"},
+{n:56,a:"الولي",t:"Al-Wali",e:"The Protector, The Guardian",b:"অভিভাবক"},
+{n:57,a:"الحميد",t:"Al-Hamid",e:"The Praiseworthy, The Most Praised",b:"প্রশংসিত"},
+{n:58,a:"المحصي",t:"Al-Muhsi",e:"The All-Enumerating, The Counter",b:"গণনাকারী"},
+{n:59,a:"المبدئ",t:"Al-Mubdi",e:"The Originator, The Initiator",b:"সৃষ্টিকারী"},
+{n:60,a:"المعيد",t:"Al-Muid",e:"The Restorer, The Reviver",b:"পুনরাবৃত্তিকারী"},
 {n:61,a:"المحيي",t:"Al-Muhyi",e:"The Giver of Life",b:"জীবনদাতা"},
-{n:62,a:"المميت",t:"Al-Mumit",e:"The Bringer of Death",b:"মৃত্যুদাতা"},
+{n:62,a:"المميت",t:"Al-Mumit",e:"The Taker of Life, The Causer of Death",b:"মৃত্যুদাতা"},
 {n:63,a:"الحي",t:"Al-Hayy",e:"The Ever-Living",b:"চিরঞ্জীব"},
-{n:64,a:"القيوم",t:"Al-Qayyum",e:"The Self-Subsisting",b:"স্থায়ী"},
-{n:65,a:"الواجد",t:"Al-Wajid",e:"The Finder",b:"খুঁজে পায়"},
-{n:66,a:"الماجد",t:"Al-Majid",e:"The Glorious",b:"মহান"},
-{n:67,a:"الواحد",t:"Al-Wahid",e:"The Only One",b:"একক"},
-{n:68,a:"الأحد",t:"Al-Ahad",e:"The One",b:"একাকী"},
-{n:69,a:"الصمد",t:"As-Samad",e:"The Eternal",b:"চিরস্থায়ী"},
-{n:70,a:"القادر",t:"Al-Qadir",e:"The All-Powerful",b:"সর্বশক্তিমান"},
-{n:71,a:"المقتدر",t:"Al-Muqtadir",e:"The Powerful",b:"ক্ষমতাশীল"},
-{n:72,a:"المقدم",t:"Al-Muqaddim",e:"The Expediter",b:"অগ্রগামী"},
-{n:73,a:"المؤخر",t:"Al-Muakhkhir",e:"The Delayer",b:"পিছিয়ে রাখে"},
-{n:74,a:"الأول",t:"Al-Awwal",e:"The First",b:"প্রথম"},
-{n:75,a:"الآخر",t:"Al-Akhir",e:"The Last",b:"শেষ"},
-{n:76,a:"الظاهر",t:"Az-Zahir",e:"The Manifest",b:"প্রকাশ্য"},
-{n:77,a:"الباطن",t:"Al-Batin",e:"The Hidden",b:"লুকানো"},
-{n:78,a:"الوالي",t:"Al-Wali",e:"The Governor",b:"শাসক"},
-{n:79,a:"المتعالي",t:"Al-Mutali",e:"The Most Exalted",b:"সর্বোচ্চতর"},
-{n:80,a:"البر",t:"Al-Barr",e:"The Source of Goodness",b:"দয়ালু"},
-{n:81,a:"التواب",t:"At-Tawwab",e:"The Ever-Returning",b:"তওবা গ্রহণকারী"},
+{n:64,a:"القيوم",t:"Al-Qayyum",e:"The Sustainer, The Self-Subsisting",b:"স্থায়ী"},
+{n:65,a:"الواجد",t:"Al-Wajid",e:"The Ever-Wealthy, The Self-Sufficient",b:"খুঁজে পায়"},
+{n:66,a:"الماجد",t:"Al-Majid",e:"The Noble, The Generous",b:"মহান"},
+{n:67,a:"الواحد",t:"Al-Wahid",e:"The One, The Indivisible",b:"একক"},
+{n:68,a:"الأحد",t:"Al-Ahad",e:"The Unique, The Only One",b:"একাকী"},
+{n:69,a:"الصمد",t:"As-Samad",e:"The Self-Subsisting, The One Upon Whom All Depend",b:"চিরস্থায়ী"},
+{n:70,a:"القادر",t:"Al-Qadir",e:"The Omnipotent, The All-Able",b:"সর্বশক্তিমান"},
+{n:71,a:"المقتدر",t:"Al-Muqtadir",e:"The All-Powerful, The Dominant",b:"ক্ষমতাশীল"},
+{n:72,a:"المقدم",t:"Al-Muqaddim",e:"The Expediter, The Promoter",b:"অগ্রগামী"},
+{n:73,a:"المؤخر",t:"Al-Muakhkhir",e:"The Delayer, The Postponer",b:"পিছিয়ে রাখে"},
+{n:74,a:"الأول",t:"Al-Awwal",e:"The First, The Pre-Existing",b:"প্রথম"},
+{n:75,a:"الآخر",t:"Al-Akhir",e:"The Last, The Ever-Remaining",b:"শেষ"},
+{n:76,a:"الظاهر",t:"Az-Zahir",e:"The Manifest, The Highest",b:"প্রকাশ্য"},
+{n:77,a:"الباطن",t:"Al-Batin",e:"The Hidden One, Knower of the Hidden",b:"লুকানো"},
+{n:78,a:"الوالي",t:"Al-Wali",e:"The Sole Governor",b:"শাসক"},
+{n:79,a:"المتعالي",t:"Al-Mutali",e:"The Self-Exalted",b:"সর্বোচ্চতর"},
+{n:80,a:"البر",t:"Al-Barr",e:"The Source of All Goodness",b:"দয়ালু"},
+{n:81,a:"التواب",t:"At-Tawwab",e:"The Accepter of Repentance, The Ever-Relenting",b:"তওবা গ্রহণকারী"},
 {n:82,a:"المنتقم",t:"Al-Muntaqim",e:"The Avenger",b:"প্রতিশোধী"},
 {n:83,a:"العفو",t:"Al-Afuww",e:"The Pardoner",b:"ক্ষমাকারী"},
-{n:84,a:"الرؤوف",t:"Ar-Rauf",e:"The Compassionate",b:"করুণাশীল"},
-{n:85,a:"مالك الملك",t:"Malik-ul-Mulk",e:"The Owner of All Sovereignty",b:"সার্বভৌম মালিক"},
-{n:86,a:"ذو الجلال والإكرام",t:"Dhul-Jalal wal-Ikram",e:"The Lord of Majesty and Bounty",b:"মহিমা এবং দানের মালিক"},
-{n:87,a:"المقسط",t:"Al-Muqsit",e:"The Just",b:"ন্যায়নিষ্ঠ"},
-{n:88,a:"الجامع",t:"Al-Jami",e:"The Gatherer",b:"সংগ্রাহক"},
-{n:89,a:"الغني",t:"Al-Ghani",e:"The Rich",b:"সমৃদ্ধ"},
+{n:84,a:"الرؤوف",t:"Ar-Rauf",e:"The Most Kind",b:"করুণাশীল"},
+{n:85,a:"مالك الملك",t:"Malik-ul-Mulk",e:"Master of the Dominion, Owner of the Kingdom",b:"সার্বভৌম মালিক"},
+{n:86,a:"ذو الجلال والإكرام",t:"Dhul-Jalal wal-Ikram",e:"Possessor of Glory and Honour",b:"মহিমা এবং দানের মালিক"},
+{n:87,a:"المقسط",t:"Al-Muqsit",e:"The Just One",b:"ন্যায়নিষ্ঠ"},
+{n:88,a:"الجامع",t:"Al-Jami",e:"The Gatherer, the Uniter",b:"সংগ্রাহক"},
+{n:89,a:"الغني",t:"Al-Ghani",e:"The Self-Sufficient, The Free of All Need",b:"সমৃদ্ধ"},
 {n:90,a:"المغني",t:"Al-Mughni",e:"The Enricher",b:"সমৃদ্ধিদাতা"},
 {n:91,a:"المانع",t:"Al-Mani",e:"The Withholder",b:"প্রতিরোধকারী"},
-{n:92,a:"الضار",t:"Ad-Darr",e:"The Harmer",b:"ক্ষতিকর"},
-{n:93,a:"النافع",t:"An-Nafi",e:"The Benefiter",b:"উপকারী"},
+{n:92,a:"الضار",t:"Ad-Darr",e:"The Creator of Harm",b:"ক্ষতিকর"},
+{n:93,a:"النافع",t:"An-Nafi",e:"The Propitious, The Benefactor",b:"উপকারী"},
 {n:94,a:"النور",t:"An-Nur",e:"The Light",b:"আলো"},
 {n:95,a:"الهادي",t:"Al-Hadi",e:"The Guide",b:"পথপ্রদর্শক"},
-{n:96,a:"البديع",t:"Al-Badi",e:"The Originator",b:"অভিনব সৃষ্টিকারী"},
-{n:97,a:"الباقي",t:"Al-Baqi",e:"The Everlasting",b:"চিরস্থায়ী"},
+{n:96,a:"البديع",t:"Al-Badi",e:"The Incomparable Originator",b:"অভিনব সৃষ্টিকারী"},
+{n:97,a:"الباقي",t:"Al-Baqi",e:"The Ever-LLasting",b:"চিরস্থায়ী"},
 {n:98,a:"الوارث",t:"Al-Warith",e:"The Inheritor",b:"উত্তরাধিকারী"},
 {n:99,a:"الرشيد",t:"Ar-Rashid",e:"The Guide to the Right Path",b:"সঠিক পথের নির্দেশক"}
 ];
@@ -674,7 +665,7 @@ function selLang(l,el){document.querySelectorAll('.lopt').forEach(o=>o.classList
 function finishOnboard(){S.lang=lang;sv();applyUI();applyTheme();updHdr();updDash();showV('dash');}
 function openSett(){document.getElementById('sov').classList.add('on');}
 function closeSett(){document.getElementById('sov').classList.remove('on');}
-function setLang(l){lang=l;S.lang=l;sv();applyUI();loadCard(idx);loadNames();updateUITexts();}
+function setLang(l){lang=l;S.lang=l;sv();applyUI();loadCard(idx);if(nidx!==undefined)loadNameCard(nidx);}
 function setTheme(t){dark=t==='dark';S.dark=dark;sv();applyTheme();}
 
 function applyFontSize(){
@@ -739,54 +730,97 @@ window.addEventListener('keydown',e=>{
 });
 
 /* 99 NAMES FUNCTIONS */
-function loadNames(){
-  const grid=document.getElementById('ngrid');
-  grid.innerHTML='';
-  NAMES.forEach(name=>{
-    const card=document.createElement('div');
-    card.className='ncard';
-    card.innerHTML=`
-      <div class="nnum">#${name.n}</div>
-      <div class="narabic" dir="rtl">${name.a}</div>
-      <div class="ntransl">${name.t}</div>
-      <div class="nmeaning">${lang==='bn'?name.b:name.e}</div>
-    `;
-    grid.appendChild(card);
-  });
-  updateUITexts();
+let nidx=0,nflipped=false,nread=new Set(),ndrag=false,nsx=0,nsy=0,ndx2=0,ndl=false,nih=false,nlastT=0;
+
+function loadNameCard(i){
+  const n=NAMES[i];
+  set('ncn',i+1);
+  const nnum=document.getElementById('nnum'),narab=document.getElementById('narab');
+  const ntrans=document.getElementById('ntrans'),nmean=document.getElementById('nmean');
+  
+  nnum.textContent='# '+n.n;
+  narab.textContent=n.a;
+  ntrans.textContent=n.t;
+  nmean.textContent=lang==='bn'?n.b:n.e;
+  
+  nflipped=false;
+  document.getElementById('ncfi').classList.remove('flipped');
+  updateNameDots();
+  lockName();
 }
 
-function filterNames(){
-  const query=document.getElementById('nsearch').value.toLowerCase();
-  const cards=document.querySelectorAll('.ncard');
-  let count=0;
-  cards.forEach(card=>{
-    const text=card.textContent.toLowerCase();
-    const show=text.includes(query);
-    card.style.display=show?'':'none';
-    if(show)count++;
+function updateNameDots(){
+  const w=document.getElementById('ndots');w.innerHTML='';
+  NAMES.forEach((_,i)=>{
+    const el=document.createElement('div');
+    el.className='dot'+(i===nidx?' cur':nread.has(i)?' dn':'');
+    w.appendChild(el);
   });
-  document.getElementById('nnoResults').style.display=count===0?'':'none';
-  if(count===0&&query.length>0){
-    document.getElementById('nnoResults').style.display='';
-  }
+}
+
+function lockName(){
+  document.getElementById('ntb').disabled=true;
+  document.getElementById('nti').classList.add('lk');
+  const nth2=document.getElementById('nth2');if(nth2)nth2.textContent=lang==='bn'?'অর্থ দেখতে কার্ড উল্টান':'flip card to unlock';
+}
+
+function unlockName(){
+  document.getElementById('ntb').disabled=false;
+  document.getElementById('nti').classList.remove('lk');
+  const nth2=document.getElementById('nth2');if(nth2)nth2.textContent=lang==='bn'?'পড়া শেষ হলে টিক দিন':'tap to mark as read';
+}
+
+function doNameFlip(){
+  nflipped=!nflipped;
+  document.getElementById('ncfi').classList.toggle('flipped',nflipped);
+  if(nflipped)unlockName();else lockName();
+}
+
+function markNameRead(){
+  nread.add(nidx);
+  if(nidx<NAMES.length-1){nidx++;setTimeout(()=>loadNameCard(nidx),80);}else goHome();
 }
 
 function showNames(){
-  document.getElementById('nsearch').value='';
-  loadNames();
+  nidx=0;nflipped=false;nread.clear();
+  loadNameCard(nidx);
   showV('names');
 }
 
-function updateUITexts(){
-  const t=TX[lang];
-  document.getElementById('ntitle').textContent=lang==='bn'?'৯৯ নাম':'99 Names';
-  document.getElementById('nintro').textContent=lang==='bn'?'প্রতিটি নাম আল্লাহর একটি বৈশিষ্ট্য প্রতিফলিত করে। এই নামগুলি ধ্যান করুন এবং আল্লাহর সাথে আপনার সংযোগ গভীর করুন।':'Each name reflects a divine attribute. Reflect on these names to deepen your connection with Allah.';
-  document.getElementById('nsearch').placeholder=lang==='bn'?'নাম খুঁজুন...':'Search names...';
+function onNS(x,y){ndrag=true;nsx=x;nsy=y;ndx2=0;ndl=false;nih=false;document.getElementById('nc').style.transition='none';}
+function onNM(x,y){
+  if(!ndrag)return;const dx=x-nsx,dy=y-nsy;
+  if(!ndl){if(Math.abs(dx)>6||Math.abs(dy)>6){nih=Math.abs(dx)>Math.abs(dy);ndl=true;}return;}
+  if(!nih)return;ndx2=dx;
+  document.getElementById('nc').style.transform='translateX('+ndx2+'px) rotate('+(ndx2*0.025)+'deg)';
+  const t=Math.min(Math.abs(ndx2)/80,1);
+  document.getElementById('nswn').style.opacity=ndx2>20?t:'0';
+  document.getElementById('nswp').style.opacity=ndx2<-20?t:'0';
+}
+function onNE(){
+  if(!ndrag)return;ndrag=false;document.getElementById('nc').style.transition='transform .3s ease';
+  if(nih&&Math.abs(ndx2)>70){
+    if(ndx2>0){
+      if(nidx<NAMES.length-1){document.getElementById('nc').style.transform='translateX(120%) rotate(6deg)';setTimeout(()=>{document.getElementById('nc').style.transition='none';document.getElementById('nc').style.transform='';nidx++;loadNameCard(nidx);},250);}
+      else document.getElementById('nc').style.transform='';
+    }else{
+      if(nidx>0){document.getElementById('nc').style.transform='translateX(-120%) rotate(-6deg)';setTimeout(()=>{document.getElementById('nc').style.transition='none';document.getElementById('nc').style.transform='';nidx--;loadNameCard(nidx);},250);}
+      else document.getElementById('nc').style.transform='';
+    }
+  }else{document.getElementById('nc').style.transform='';if(!ndl||Math.abs(ndx2)<10)doNameFlip();}
+  document.getElementById('nswp').style.opacity='0';document.getElementById('nswn').style.opacity='0';
 }
 
+const nc=document.getElementById('nc');
+nc.addEventListener('mousedown',e=>{if(Date.now()-nlastT<500)return;if(document.getElementById('ntb').contains(e.target))return;onNS(e.clientX,e.clientY);});
+window.addEventListener('mousemove',e=>{if(ndrag)onNM(e.clientX,e.clientY);});
+window.addEventListener('mouseup',()=>{if(Date.now()-nlastT<500)return;if(ndrag)onNE();});
+nc.addEventListener('touchstart',e=>{nlastT=Date.now();if(document.getElementById('ntb').contains(e.target))return;onNS(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+nc.addEventListener('touchmove',e=>{if(nih&&ndl)e.preventDefault();onNM(e.touches[0].clientX,e.touches[0].clientY);},{passive:false});
+nc.addEventListener('touchend',e=>{nlastT=Date.now();onNE();});
+document.getElementById('ntb').addEventListener('click',e=>{e.stopPropagation();if(!document.getElementById('ntb').disabled)markNameRead();});
+
 applyTheme();applyUI();applyFontSize();
-loadNames();
 </script>
 </body>
 </html>
