@@ -1,3 +1,3 @@
 # Mithi Dua
 Dua list made by Mithi.
-Love from Simum
+Love from Simum <3
